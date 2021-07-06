@@ -1,0 +1,17 @@
+.header {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.9;
+}
+
+.logo{
+    position: relative;
+    bottom: 1px;
+    left: 5px;
+    bottom: 2px;
+    font-family: fantasy;
+    font-size: 70px;
+    Color: white;
+}
