@@ -21,5 +21,10 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "homepage": "https://nihar840.github.io/nihar840.github.io",
+  "scripts": {
+    "predeploy": "yarn run build",
+		"deploy": "gh-pages -d build"
+  }
 }
