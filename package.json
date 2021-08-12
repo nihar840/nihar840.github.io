@@ -1,7 +1,7 @@
 {
     "name": "nihar840.github.io",
     "version": "0.1.0",
-    "homepage": "https://nihar840.github.io",
+    "homepage": "https://nihar840/nihar840.github.io",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.14.1",
