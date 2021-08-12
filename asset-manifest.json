@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/nihar840.github.io/static/css/main.766872f3.chunk.css",
+    "main.js": "/nihar840.github.io/static/js/main.ccc2170b.chunk.js",
+    "main.js.map": "/nihar840.github.io/static/js/main.ccc2170b.chunk.js.map",
+    "runtime-main.js": "/nihar840.github.io/static/js/runtime-main.e29d6206.js",
+    "runtime-main.js.map": "/nihar840.github.io/static/js/runtime-main.e29d6206.js.map",
+    "static/js/2.f59f31f2.chunk.js": "/nihar840.github.io/static/js/2.f59f31f2.chunk.js",
+    "static/js/2.f59f31f2.chunk.js.map": "/nihar840.github.io/static/js/2.f59f31f2.chunk.js.map",
+    "static/js/3.a9c4dfaf.chunk.js": "/nihar840.github.io/static/js/3.a9c4dfaf.chunk.js",
+    "static/js/3.a9c4dfaf.chunk.js.map": "/nihar840.github.io/static/js/3.a9c4dfaf.chunk.js.map",
+    "index.html": "/nihar840.github.io/index.html",
+    "static/css/main.766872f3.chunk.css.map": "/nihar840.github.io/static/css/main.766872f3.chunk.css.map",
+    "static/js/2.f59f31f2.chunk.js.LICENSE.txt": "/nihar840.github.io/static/js/2.f59f31f2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e29d6206.js",
+    "static/js/2.f59f31f2.chunk.js",
+    "static/css/main.766872f3.chunk.css",
+    "static/js/main.ccc2170b.chunk.js"
+  ]
+}
