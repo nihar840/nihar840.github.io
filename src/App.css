@@ -1,46 +1,72 @@
 .App {
   text-align: center;
-  margin-top: 180px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .reactLogo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  margin-top: 5%;
 }
 
 .profilePic{
   border-radius: 50%;
-  max-height: 300px;
-  max-width: 300px;
+  height: 20%;
+  width: 20%;
+  transition-duration: 0.5s;
 }
 
 .myName{
-  font-size: 100px;
+  font-size: 50px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bold;
+  transition-duration: 0.5s;
+}
+
+@media screen and (max-width:700px) {
+  .myName{
+    font-size: 20px;
+  }
+  .profilePic{
+    margin-top: 7%;
+  }
+  
+}
+
+@media screen and (max-width:1000px) and (min-width:700px) {
+  .myName{
+    font-size: 35px;
+  }
+
+  .profilePic{
+    margin-top: 3%;
+  }
+}
+
+.fa {
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
 }
