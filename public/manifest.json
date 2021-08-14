@@ -24,7 +24,7 @@
   "background_color": "#ffffff",
   "homepage": "https://nihar840.github.io/nihar840.github.io",
   "scripts": {
-    "predeploy": "yarn run build",
-		"deploy": "gh-pages -d build"
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
   }
 }
