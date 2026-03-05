@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { experience, education } from './data';
+import { experience, education, awards } from './data';
 import './Experience.css';
 
 function Experience() {
@@ -15,7 +15,7 @@ function Experience() {
           {experience.map((job, i) => (
             <div
               className={`timeline__item ${expanded === i ? 'timeline__item--open' : ''}`}
-              key={job.company}
+              key={`${job.company}-${i}`}
               onClick={() => setExpanded(expanded === i ? -1 : i)}
               style={{ '--accent-color': job.color }}
             >
@@ -37,8 +37,8 @@ function Experience() {
                 </div>
 
                 <ul className={`timeline__highlights ${expanded === i ? 'timeline__highlights--show' : ''}`}>
-                  {job.highlights.map((h) => (
-                    <li key={h}><span className="timeline__bullet" style={{ color: job.color }}>▹</span> {h}</li>
+                  {job.highlights.map((h, hi) => (
+                    <li key={hi}><span className="timeline__bullet" style={{ color: job.color }}>▹</span> {h}</li>
                   ))}
                 </ul>
               </div>
@@ -63,6 +63,23 @@ function Experience() {
             </div>
           ))}
         </div>
+
+        {/* Awards & Certifications */}
+        <div className="edu">
+          <h3 className="edu__title">Awards & Certifications</h3>
+          <div className="awards__grid">
+            {awards.map((a, i) => (
+              <div className="awards__card" key={i}>
+                <div className="awards__icon">🏆</div>
+                <div className="awards__info">
+                  <div className="awards__title">{a.title}</div>
+                  <div className="awards__org">{a.org}{a.detail ? ` · ${a.detail}` : ''}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );

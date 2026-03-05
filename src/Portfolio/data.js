@@ -1,136 +1,156 @@
 export const profile = {
   name: 'Nihar Ranjan',
-  title: 'Full Stack Engineer',
-  tagline: 'Building scalable systems at the intersection of cloud, AI, and great UX',
-  email: 'niharranjan.mahajan420@gmail.com',
-  location: 'India',
+  title: 'Senior Software Engineer',
+  tagline: 'Building enterprise AI systems at the intersection of cloud, retrieval, and great UX',
+  email: 'nrmahajan840@gmail.com',
+  location: 'Redmond, Washington, USA',
   social: {
-    twitter: 'https://twitter.com/NiharMahajan',
-    facebook: 'https://www.facebook.com/niharranjan.mahajan420',
-    linkedin: 'https://www.linkedin.com/in/nihar-ranjan-5bb54853/',
+    twitter:   'https://twitter.com/NiharMahajan',
+    facebook:  'https://www.facebook.com/niharranjan.mahajan420',
+    linkedin:  'https://www.linkedin.com/in/nihar-ranjan-5bb54853/',
     instagram: 'https://www.instagram.com/n_i_h_a_r___/',
-    github: 'https://github.com/nihar840',
+    github:    'https://github.com/nihar840',
   },
 };
 
 export const skills = [
   {
-    category: 'Languages',
-    icon: '⌨️',
-    items: ['TypeScript', 'C#', 'Python', 'Java', 'JavaScript', 'SQL'],
-  },
-  {
     category: 'Frontend',
     icon: '🎨',
-    items: ['React', 'Angular', 'Redux', 'HTML5', 'CSS3 / SCSS', 'Webpack'],
+    items: ['React', 'TypeScript', 'JavaScript', 'Redux', 'HTML5', 'CSS3'],
   },
   {
     category: 'Backend',
     icon: '⚙️',
-    items: ['ASP.NET Core', 'Node.js', 'FastAPI', 'Spring Boot', 'REST APIs', 'GraphQL'],
+    items: ['.NET', 'Python', 'REST APIs', 'Auth / AuthZ', 'Schema Validation', 'VB.NET'],
+  },
+  {
+    category: 'AI & RAG',
+    icon: '🧠',
+    items: ['Grounded Retrieval', 'RAG Pipelines', 'AI Execution Flows', 'Guardrails', 'Audit Trails', 'Ollama'],
   },
   {
     category: 'Cloud & DevOps',
     icon: '☁️',
-    items: ['Azure', 'AWS', 'Docker', 'Kubernetes', 'GitHub Actions', 'CI/CD'],
+    items: ['Azure', 'Azure DevOps', 'Azure Functions', 'CI/CD', 'GitHub', 'Azure Blob Storage'],
   },
   {
     category: 'Databases',
     icon: '🗄️',
-    items: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Redis', 'ChromaDB'],
+    items: ['Cosmos DB', 'SQL Server', 'NoSQL', 'ChromaDB'],
   },
   {
-    category: 'AI / ML',
-    icon: '🧠',
-    items: ['PyTorch', 'scikit-learn', 'LLM / RAG', 'Pandas', 'NumPy', 'Ollama'],
+    category: 'Observability',
+    icon: '📡',
+    items: ['Structured Logging', 'Diagnostics', 'Metrics / Tracing', 'Incident Reduction'],
   },
 ];
 
 export const experience = [
   {
-    role: 'Senior Software Engineer',
-    company: 'Infosys',
-    period: '2021 – Present',
-    location: 'Bangalore, India',
+    role: 'Software Engineer — Cosmic Portal',
+    company: 'Microsoft (via Tech Mahindra / Zen3)',
+    period: 'Jul 2025 – Present',
+    location: 'Redmond, Washington, USA',
     color: '#6366f1',
     highlights: [
-      'Architected .NET Core microservices platform handling 2M+ requests / day with 99.9% uptime',
-      'Led React migration from Angular, cutting initial load time by 40% and halving bundle size',
-      'Designed ML pipeline for customer churn prediction achieving 89% accuracy (PyTorch + Azure ML)',
-      'Mentored team of 6 engineers, introduced code review standards and automated testing culture',
+      'Working on AI-assisted column generation — users define rules in the UI to generate derived columns on top of Cosmos DB data',
+      'Implemented a step-wise execution pipeline to retrieve rows, fetch linked documents, extract relevant content, validate outputs, and safely write results back to the database',
+      'Designed workflows integrating Cosmos DB and Azure Blob Storage to assemble structured context for downstream AI processing',
+      'Built command generation and execution layer with guardrails, input sanitization, allowed-action constraints, confidence checks, and full audit traceability',
+      'Contributed to retrieval logic: document selection, relevance filtering, chunking, and context limits',
+      'Created a reusable Python logging utility for structured logging and diagnostics across the service',
+      'Built and integrated a React-based experience into enterprise CRM flows',
+    ],
+  },
+  {
+    role: 'Software Engineer / Associate Team Lead',
+    company: 'Zen3 — Microsoft (FastTrack & Unified Action Tracker)',
+    period: 'Mar 2021 – Jun 2025',
+    location: 'Redmond, Washington, USA',
+    color: '#8b5cf6',
+    highlights: [
+      'Shipped enterprise-grade automation workflows within Microsoft 365 Admin UX, end-to-end from UI to production',
+      'Acted as Associate Team Lead — led code reviews and mentored engineers across the team',
+      'Migrated backend workflows from Logic Apps to Azure Functions for improved scalability and cost efficiency',
+      'Built reusable React / TypeScript UI components for data-heavy enterprise applications',
+    ],
+  },
+  {
+    role: 'Specialist Programmer',
+    company: 'Tech Mahindra',
+    period: 'Jul 2020 – Feb 2021',
+    location: 'India',
+    color: '#06b6d4',
+    highlights: [
+      'Delivered critical React UI components under strict timelines for enterprise client projects',
     ],
   },
   {
     role: 'Software Engineer',
-    company: 'Wipro',
-    period: '2019 – 2021',
-    location: 'Hyderabad, India',
-    color: '#06b6d4',
-    highlights: [
-      'Built REST APIs in Java Spring Boot serving B2B clients across 12 countries',
-      'Reduced CI/CD pipeline time by 60% by Dockerising monolith into containerised services',
-      'Implemented real-time dashboards using WebSockets + React, replacing slow polling solution',
-      'Optimised PostgreSQL queries, reducing average response time from 800 ms to 90 ms',
-    ],
-  },
-  {
-    role: 'Junior Developer',
-    company: 'Tata Consultancy Services',
-    period: '2017 – 2019',
-    location: 'Pune, India',
+    company: 'Tech Mahindra',
+    period: 'Jul 2018 – Jun 2020',
+    location: 'India',
     color: '#10b981',
     highlights: [
-      'Developed internal HR automation tools with React and Node.js used by 5,000+ employees',
-      'Maintained and migrated SQL Server databases holding 500K+ records with zero downtime',
-      'Contributed to Agile sprints, consistently delivering features ahead of schedule',
+      'Developed .NET MVC and VB.NET features for a healthcare order management system',
+      'Gained deep foundational experience in .NET backend development and enterprise database integration',
     ],
   },
 ];
 
 export const education = [
   {
-    degree: 'B.Tech — Computer Science & Engineering',
-    institution: 'NIT Rourkela',
-    period: '2013 – 2017',
-    gpa: '8.4 / 10',
+    degree: 'B.Tech — Information Technology',
+    institution: 'KIIT (Kalinga Institute of Industrial Technology), Bhubaneswar',
+    period: '2014 – 2018',
+    gpa: '7.56 / 10',
   },
+];
+
+export const awards = [
+  { title: 'ASCEND Leadership Program', org: 'Tech Mahindra', detail: '2nd Position Holder' },
+  { title: 'ACE Award', org: 'Tech Mahindra', detail: 'Outstanding contribution recognition' },
+  { title: 'AI CoE Contributor', org: 'Tech Mahindra', detail: 'Internal AI awareness & adoption initiatives' },
+  { title: 'Microsoft Certified: Azure Fundamentals', org: 'Microsoft', detail: 'AZ-900' },
+  { title: 'Certified Python Programmer', org: 'Infosys', detail: '' },
 ];
 
 export const projects = [
   {
-    title: 'RAG Portfolio Search',
+    title: 'AI Column Generation Pipeline',
     emoji: '🤖',
     description:
-      'Local AI-powered Q&A over portfolio documents. Streaming answers from Ollama LLM backed by ChromaDB vector store and a .NET RAG orchestration layer.',
-    tags: ['React', '.NET', 'Ollama', 'ChromaDB', 'SSE'],
+      'Production AI system at Microsoft where users define natural language rules to generate derived columns over Cosmos DB data. Step-wise retrieval, schema validation, guardrails, and full audit trail.',
+    tags: ['React', '.NET', 'Python', 'Cosmos DB', 'Azure'],
     color: '#6366f1',
     link: null,
   },
   {
-    title: 'Customer Churn Predictor',
-    emoji: '📊',
+    title: 'RAG Portfolio Search',
+    emoji: '✦',
     description:
-      'End-to-end ML pipeline that predicts subscription churn with 89% accuracy. Features automated retraining, SHAP explainability, and a FastAPI inference endpoint.',
-    tags: ['Python', 'PyTorch', 'FastAPI', 'Azure ML', 'SHAP'],
+      'Local AI-powered Q&A over portfolio documents. Streams answers from a local Ollama LLM backed by ChromaDB vector store and a .NET RAG orchestration layer with SSE.',
+    tags: ['React', '.NET', 'Ollama', 'ChromaDB', 'SSE'],
+    color: '#8b5cf6',
+    link: null,
+  },
+  {
+    title: 'FastTrack Automation — Microsoft 365',
+    emoji: '⚡',
+    description:
+      'Enterprise-grade automation workflows within Microsoft 365 Admin UX. Migrated backend from Logic Apps to Azure Functions and built reusable React/TypeScript component library.',
+    tags: ['React', 'TypeScript', '.NET', 'Azure Functions', 'M365'],
     color: '#06b6d4',
     link: null,
   },
   {
-    title: 'Microservices Platform',
-    emoji: '⚡',
+    title: 'Healthcare Order Management System',
+    emoji: '🏥',
     description:
-      'Distributed .NET Core backend serving 2M+ daily requests. Implements CQRS, event sourcing, distributed tracing with OpenTelemetry, and auto-scaling on Kubernetes.',
-    tags: ['.NET Core', 'Kubernetes', 'Docker', 'CQRS', 'Azure'],
+      'Developed .NET MVC and VB.NET features for a healthcare order management platform. Focus on reliability, data integrity, and enterprise-grade backend architecture.',
+    tags: ['.NET MVC', 'VB.NET', 'SQL Server', 'C#'],
     color: '#10b981',
-    link: null,
-  },
-  {
-    title: 'Real-time Analytics Dashboard',
-    emoji: '📈',
-    description:
-      'Live WebSocket-powered dashboard replacing a polling-based system. Reduced server load by 70% while delivering sub-100ms data freshness for business KPIs.',
-    tags: ['React', 'WebSockets', 'Node.js', 'PostgreSQL', 'Redis'],
-    color: '#f59e0b',
     link: null,
   },
 ];
