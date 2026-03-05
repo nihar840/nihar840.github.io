@@ -47,7 +47,7 @@ export const skills = [
 export const experience = [
   {
     role: 'Software Engineer — Cosmic Portal',
-    company: 'Microsoft (via Tech Mahindra / Zen3)',
+    company: 'Microsoft (via Tech Mahindra)',
     period: 'Jul 2025 – Present',
     location: 'Redmond, Washington, USA',
     color: '#6366f1',
@@ -63,7 +63,7 @@ export const experience = [
   },
   {
     role: 'Software Engineer / Associate Team Lead',
-    company: 'Tech Mahindra / Zen3 — Microsoft (FastTrack & Unified Action Tracker)',
+    company: 'Tech Mahindra — Microsoft (FastTrack & Unified Action Tracker)',
     period: 'Mar 2021 – Jun 2025',
     location: 'Redmond, Washington, USA',
     color: '#8b5cf6',

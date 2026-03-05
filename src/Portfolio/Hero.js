@@ -64,7 +64,7 @@ function Hero({ onSearchOpen }) {
               download="Nihar_Ranjan_Resume.pdf"
               className="hero__btn hero__btn--primary"
             >
-              ↓ Download Resume
+              ↓ Download Profile
             </a>
             <button
               className="hero__btn hero__btn--ai"
