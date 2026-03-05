@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Nihar Ranjan',
-  title: 'Senior Software Engineer',
-  tagline: 'Senior full-stack engineer shipping enterprise products in the Microsoft ecosystem — React, .NET, Python, Azure',
+  title: 'Software Engineer & Tech Lead',
+  tagline: 'Full-stack engineer and tech lead shipping enterprise products in the Microsoft ecosystem — React, .NET, Python, Azure',
   email: 'nrmahajan840@gmail.com',
   location: 'Redmond, Washington, USA',
   social: {
