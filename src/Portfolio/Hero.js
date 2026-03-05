@@ -60,10 +60,11 @@ function Hero({ onSearchOpen }) {
 
           <div className="hero__actions">
             <a
-              href="#experience"
+              href="/resume.pdf"
+              download="Nihar_Ranjan_Resume.pdf"
               className="hero__btn hero__btn--primary"
             >
-              View Resume
+              ↓ Download Resume
             </a>
             <button
               className="hero__btn hero__btn--ai"

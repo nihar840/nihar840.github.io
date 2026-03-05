@@ -64,10 +64,10 @@ function SearchPage({ onClose }) {
               ↺ &nbsp;Try again
             </button>
             <div className="search-panel__offline-links">
-              <a href="mailto:niharranjan.mahajan420@gmail.com" className="search-panel__offline-link">
+              <a href="mailto:nrmahajan840@gmail.com" className="search-panel__offline-link">
                 ✉ Email
               </a>
-              <a href="https://linkedin.com/in/niharranjan-mahajan" target="_blank" rel="noreferrer"
+              <a href="https://www.linkedin.com/in/nihar-ranjan-5bb54853/" target="_blank" rel="noreferrer"
                  className="search-panel__offline-link search-panel__offline-link--linkedin">
                 in LinkedIn
               </a>
@@ -75,11 +75,18 @@ function SearchPage({ onClose }) {
                  className="search-panel__offline-link search-panel__offline-link--github">
                 ⌥ GitHub
               </a>
+              <a href="/resume.pdf" download className="search-panel__offline-link">
+                ↓ Resume
+              </a>
             </div>
           </div>
         ) : (
           <>
-            <ChatWindow messages={messages} isLoading={isLoading || apiStatus === 'checking'} />
+            <ChatWindow
+              messages={messages}
+              isLoading={isLoading || apiStatus === 'checking'}
+              onSuggest={sendQuery}
+            />
             {sources.length > 0 && <SourceCards sources={sources} />}
             {error && <div className="search-panel__error">⚠ {error}</div>}
             <SearchBar onSearch={sendQuery} isLoading={isLoading || apiStatus === 'checking'} />
