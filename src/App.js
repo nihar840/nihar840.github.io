@@ -1,26 +1,29 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './Header/Header';
+import SearchPage from './Search/SearchPage';
+import Hero from './Portfolio/Hero';
+import Skills from './Portfolio/Skills';
+import Experience from './Portfolio/Experience';
+import Projects from './Portfolio/Projects';
+import Contact from './Portfolio/Contact';
 
 function App() {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const openSearch = () => setSearchOpen(true);
+
   return (
     <React.Fragment>
-    <Header/>
-    <div>
-    <div className="App">
-      <img className="profilePic" src="Images/Profile pic.jpg" alt=""/>
-      <div className="myName">
-        Nihar Ranjan
-      </div>
-      <div>
-        <a href="https://twitter.com/NiharMahajan" className="fa fa-twitter"></a>
-        <a href="https://www.facebook.com/niharranjan.mahajan420" className="fa fa-facebook"></a>
-        <a href="https://www.linkedin.com/in/nihar-ranjan-5bb54853/" className="fa fa-linkedin"></a>
-        <a href="https://www.instagram.com/n_i_h_a_r___/" className="fa fa-instagram"></a>
-      </div>
-    </div>
-    </div>
+      <Header onSearchOpen={openSearch} />
+      <main>
+        <Hero onSearchOpen={openSearch} />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact onSearchOpen={openSearch} />
+      </main>
+      {searchOpen && <SearchPage onClose={() => setSearchOpen(false)} />}
     </React.Fragment>
   );
 }
