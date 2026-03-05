@@ -1,0 +1,15 @@
+## .NET build artifacts
+RagApi/bin/
+RagApi/obj/
+
+## Secrets / local config
+RagApi/appsettings.*.local.json
+*.user
+
+## Python
+__pycache__/
+*.pyc
+*.pyo
+
+## ChromaDB data
+chroma-data/
