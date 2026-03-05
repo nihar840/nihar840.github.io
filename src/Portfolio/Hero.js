@@ -3,10 +3,10 @@ import { profile } from './data';
 import './Hero.css';
 
 const TITLES = [
-  'Full Stack Engineer',
-  'Cloud Architect',
-  'AI / ML Enthusiast',
-  '.NET & React Developer',
+  'Senior Software Engineer',
+  'React & TypeScript Developer',
+  'AI / RAG Systems Builder',
+  '.NET & Azure Engineer',
 ];
 
 function Hero({ onSearchOpen }) {

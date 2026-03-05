@@ -159,6 +159,40 @@
   font-weight: 600;
 }
 
+/* ─── Awards & Certifications ─── */
+.awards__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-left: 24px;
+  margin-top: 12px;
+}
+.awards__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.awards__card:hover {
+  border-color: rgba(99,102,241,0.4);
+  transform: translateY(-2px);
+}
+.awards__icon { font-size: 1.4rem; flex-shrink: 0; }
+.awards__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.awards__org {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 600px) {
   .timeline { padding-left: 18px; }
   .timeline__dot { left: -25px; }
