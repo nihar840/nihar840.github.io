@@ -22,7 +22,12 @@ public class LlmService : ILlmService
         {
             Model = _opts.GenerationModel,
             Prompt = prompt,
-            Options = new OllamaModelOptions { Temperature = 0.1f }
+            Options = new OllamaModelOptions
+            {
+                Temperature = 0.1f,
+                NumPredict = _opts.MaxTokens,
+                RepeatPenalty = 1.3f
+            }
         }, ct);
 
     public async IAsyncEnumerable<string> GenerateStreamAsync(
@@ -33,7 +38,12 @@ public class LlmService : ILlmService
         {
             Model = _opts.GenerationModel,
             Prompt = prompt,
-            Options = new OllamaModelOptions { Temperature = 0.1f }
+            Options = new OllamaModelOptions
+            {
+                Temperature = 0.1f,
+                NumPredict = _opts.MaxTokens,
+                RepeatPenalty = 1.3f
+            }
         };
 
         await foreach (var token in _ollama.GenerateStreamAsync(request, ct))

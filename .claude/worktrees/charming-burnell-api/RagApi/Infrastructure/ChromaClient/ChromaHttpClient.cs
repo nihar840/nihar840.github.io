@@ -25,8 +25,12 @@ public class ChromaHttpClient
         }
         catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound) { }
 
-        // Create it
-        var payload = new { name, metadata = new { hnsw_space = "cosine" } };
+        // Create it — metadata key must be "hnsw:space" (colon, not underscore)
+        var payload = new
+        {
+            name,
+            metadata = new Dictionary<string, string> { ["hnsw:space"] = "cosine" }
+        };
         var response = await _http.PostAsJsonAsync("/api/v1/collections", payload, _json, ct);
         response.EnsureSuccessStatusCode();
         return (await response.Content.ReadFromJsonAsync<ChromaCollection>(_json, ct))!;
@@ -53,6 +57,14 @@ public class ChromaHttpClient
             $"/api/v1/collections/{collectionId}/query", request, _json, ct);
         response.EnsureSuccessStatusCode();
         return (await response.Content.ReadFromJsonAsync<ChromaQueryResponse>(_json, ct))!;
+    }
+
+    public async Task DeleteCollectionAsync(string name, CancellationToken ct = default)
+    {
+        var response = await _http.DeleteAsync($"/api/v1/collections/{name}", ct);
+        // 404 is fine — collection may not exist yet
+        if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+            response.EnsureSuccessStatusCode();
     }
 
     public async Task DeleteByMetadataAsync(
