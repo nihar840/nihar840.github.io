@@ -56,10 +56,10 @@ He is very experienced with .NET, Python, Azure, and AI/ML integration in produc
     },
     {
         "documentId": "experience-microsoft-cosmic",
-        "title": "Software Engineer at Microsoft — Cosmic Portal (via Tech Mahindra / Zen3)",
+        "title": "Software Engineer at Microsoft — Cosmic Portal (via Tech Mahindra / Tech Mahindra)",
         "text": """
 Nihar Ranjan is currently working as a Software Engineer on the Cosmic Portal at Microsoft,
-via Tech Mahindra and Zen3, based in Redmond, Washington. Period: July 2025 to Present.
+via Tech Mahindra and Tech Mahindra, based in Redmond, Washington. Period: July 2025 to Present.
 
 Key responsibilities and achievements:
 - Working on AI-assisted column generation where users define rules in the UI to generate
@@ -83,9 +83,9 @@ React/TypeScript, Python, and enterprise-scale production systems at Microsoft.
     },
     {
         "documentId": "experience-zen3-microsoft",
-        "title": "Software Engineer / Associate Team Lead at Zen3 — Microsoft FastTrack",
+        "title": "Software Engineer / Associate Team Lead at Tech Mahindra — Microsoft FastTrack",
         "text": """
-Nihar Ranjan worked as a Software Engineer and Associate Team Lead at Zen3, delivering
+Nihar Ranjan worked as a Software Engineer and Associate Team Lead at Tech Mahindra, delivering
 work for Microsoft's FastTrack Automation and Unified Action Tracker teams.
 Period: March 2021 to June 2025.
 
@@ -134,7 +134,7 @@ Leadership:
 - ASCEND Leadership Program (Tech Mahindra) — 2nd Position Holder
 - Tech Mahindra AI Center of Excellence (AI CoE) — Contributor to AI awareness and
   practical adoption initiatives within the organization.
-- Associate Team Lead at Zen3/Microsoft — led code reviews and mentored engineers.
+- Associate Team Lead at Tech Mahindra/Microsoft — led code reviews and mentored engineers.
 
 Awards:
 - ACE Award — Tech Mahindra (recognition for outstanding contribution)
@@ -180,7 +180,7 @@ Nihar Ranjan has worked on several AI and RAG (Retrieval-Augmented Generation) p
    layer. Technologies: React, .NET Core, Ollama, ChromaDB, Server-Sent Events (SSE).
    This is the very system you are talking to right now!
 
-3. FastTrack Automation (Microsoft / Zen3):
+3. FastTrack Automation (Microsoft / Tech Mahindra):
    Enterprise-grade automation workflows for Microsoft 365 Admin UX. Backend migrated from
    Logic Apps to Azure Functions. Built with React, TypeScript, Azure Functions, .NET.
 
@@ -193,7 +193,7 @@ React/TypeScript frontend, .NET backend, and Azure cloud deployment.
         "title": "Location, Availability & Contact",
         "text": """
 Nihar Ranjan is currently based in Redmond, Washington, United States.
-He is working at Microsoft (via Tech Mahindra / Zen3) on the Cosmic Portal project.
+He is working at Microsoft (via Tech Mahindra / Tech Mahindra) on the Cosmic Portal project.
 
 Contact Information:
 - Email: nrmahajan840@gmail.com

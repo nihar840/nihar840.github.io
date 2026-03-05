@@ -67,15 +67,15 @@ Observability: Structured logging, diagnostics, metrics/tracing, incident reduct
 
 Nihar has strong React and TypeScript skills, building production enterprise UX for Microsoft.
 He is very experienced with .NET, Python, Azure, and AI/ML integration in production systems.
-He does NOT work at Infosys, Wipro, or TCS. He works at Microsoft via Tech Mahindra and Zen3.
+He does NOT work at Infosys, Wipro, or TCS. He works at Microsoft via Tech Mahindra.
 """
     },
     {
         "documentId": "experience-microsoft-cosmic",
-        "title": "Software Engineer at Microsoft — Cosmic Portal (via Tech Mahindra / Zen3)",
+        "title": "Software Engineer at Microsoft — Cosmic Portal (via Tech Mahindra)",
         "text": """
 Nihar Ranjan is currently working as a Software Engineer on the Cosmic Portal at Microsoft,
-via Tech Mahindra and Zen3, based in Redmond, Washington, USA. Period: July 2025 to Present.
+via Tech Mahindra, based in Redmond, Washington, USA. Period: July 2025 to Present.
 
 Key responsibilities:
 - Working on AI-assisted column generation where users define rules in the UI to generate
@@ -93,9 +93,9 @@ Key responsibilities:
     },
     {
         "documentId": "experience-zen3-microsoft",
-        "title": "Software Engineer / Associate Team Lead at Zen3 — Microsoft FastTrack",
+        "title": "Software Engineer / Associate Team Lead at Tech Mahindra — Microsoft FastTrack",
         "text": """
-Nihar Ranjan worked as a Software Engineer and Associate Team Lead at Zen3, delivering
+Nihar Ranjan worked as a Software Engineer and Associate Team Lead at Tech Mahindra, delivering
 work for Microsoft's FastTrack Automation and Unified Action Tracker teams.
 Period: March 2021 to June 2025. Location: Redmond, Washington, USA.
 
@@ -133,8 +133,8 @@ Key responsibilities:
 - Implemented prescription validation rules and supported urgent production updates during
   COVID-19.
 
-Note: Nihar's employers have been: Microsoft (via Tech Mahindra / Zen3), Tech Mahindra,
-Zen3, and Infosys Ltd. He has NOT worked at Wipro or Tata Consultancy Services (TCS).
+Note: Nihar's employers have been: Microsoft (via Tech Mahindra), Tech Mahindra,
+and Infosys Ltd. He has NOT worked at Wipro or Tata Consultancy Services (TCS).
 """
     },
     {
@@ -147,7 +147,7 @@ Leadership:
 - ASCEND Leadership Program (Tech Mahindra) — 2nd Position Holder
 - Tech Mahindra AI Center of Excellence (AI CoE) — Contributor to AI awareness and
   practical adoption initiatives.
-- Associate Team Lead at Zen3/Microsoft — led code reviews and mentored engineers.
+- Associate Team Lead at Tech Mahindra/Microsoft — led code reviews and mentored engineers.
 
 Awards:
 - ACE Award — Tech Mahindra (recognition for outstanding contribution)
@@ -183,7 +183,7 @@ Nihar Ranjan's key professional projects at Microsoft:
    Step-wise retrieval, document analysis, validation, guardrails, and audit trails.
    Built with React, .NET, Python, Cosmos DB, Azure Blob Storage.
 
-2. FastTrack Automation — Microsoft 365 (Zen3, 2021–2025):
+2. FastTrack Automation — Microsoft 365 (Tech Mahindra, 2021–2025):
    Enterprise-grade automation workflows within the Microsoft 365 Admin UX.
    Backend migrated from Logic Apps to Azure Functions.
    Built reusable React/TypeScript components for data-heavy enterprise apps.
@@ -209,7 +209,7 @@ You are currently talking to this very system!
         "title": "Location & Contact Information",
         "text": """
 Nihar Ranjan is currently based in Redmond, Washington, United States.
-He works at Microsoft (via Tech Mahindra / Zen3) on the Cosmic Portal project.
+He works at Microsoft (via Tech Mahindra) on the Cosmic Portal project.
 
 Contact:
 - Email: nrmahajan840@gmail.com
