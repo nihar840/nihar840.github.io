@@ -67,9 +67,10 @@ public class VectorStoreService : IVectorStoreService
                 .ToDictionary(kv => kv.Key, kv => kv.Value?.ToString() ?? string.Empty)
                 ?? new Dictionary<string, string>();
 
-            // ChromaDB returns cosine distance (0=identical, 2=opposite); convert to similarity
+            // ChromaDB cosine distance: 0=identical, 2=opposite → similarity = 1 - dist/2
+            // Clamp to [0, 1] in case collection was previously built with L2 metric
             var distance = dists.ElementAtOrDefault(i);
-            var score = 1f - (distance / 2f);
+            var score = Math.Max(0f, Math.Min(1f, 1f - (distance / 2f)));
 
             results.Add(new RetrievedContext
             {

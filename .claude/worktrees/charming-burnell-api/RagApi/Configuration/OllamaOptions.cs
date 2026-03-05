@@ -8,4 +8,5 @@ public class OllamaOptions
     public string GenerationModel { get; set; } = "llama3.2";
     public int RequestTimeoutSeconds { get; set; } = 120;
     public int StreamingTimeoutSeconds { get; set; } = 300;
+    public int MaxTokens { get; set; } = 400;
 }

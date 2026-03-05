@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
+0. Drop the entire ChromaDB collection (so it gets re-created with cosine metric)
 1. Delete all old / wrong document IDs from ChromaDB
 2. Re-ingest correct data from real resume
 """
 import urllib.request
 import json
 
-API_BASE = "http://localhost:5000/api"
+API_BASE   = "http://localhost:5000/api"
+CHROMA_BASE = "http://localhost:8000/api/v1"
+COLLECTION  = "portfolio-docs"
 
 # ── Old wrong IDs to delete ───────────────────────────────────────────────
 OLD_IDS = [
@@ -259,14 +262,35 @@ def ingest(doc):
         print(f"  ❌ {doc['documentId']} — {e}")
 
 
+def drop_collection():
+    """Delete the entire ChromaDB collection so it is re-created with cosine metric."""
+    req = urllib.request.Request(
+        f"{CHROMA_BASE}/collections/{COLLECTION}",
+        method="DELETE",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            print(f"  🗑  Dropped collection '{COLLECTION}' — {resp.status}")
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            print(f"  ⚪ Collection '{COLLECTION}' didn't exist — nothing to drop")
+        else:
+            print(f"  ⚠  Drop failed — HTTP {e.code}: {e.read().decode()[:120]}")
+    except Exception as e:
+        print(f"  ⚠  Drop failed — {e}")
+
+
 if __name__ == "__main__":
-    print("\n🗑  Step 1 — Deleting old/wrong documents...\n")
-    for doc_id in OLD_IDS:
-        delete_doc(doc_id)
+    print("\n💥  Step 0 — Dropping old collection (so it re-creates with cosine metric)...\n")
+    drop_collection()
+
+    print("\n🗑  Step 1 — (Old IDs now gone with collection — skipping individual deletes)\n")
 
     print(f"\n🚀  Step 2 — Ingesting {len(DOCUMENTS)} correct documents...\n")
     for doc in DOCUMENTS:
         print(f"  → {doc['title']}")
         ingest(doc)
+
+    print("\n✨  Done! ChromaDB collection re-created with cosine metric and real resume data.\n")
 
     print("\n✨  Done! ChromaDB now has accurate resume data.\n")
