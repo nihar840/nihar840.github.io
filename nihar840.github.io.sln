@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".claude", ".claude", "{0AE7C77C-1A1D-D779-8C60-7AB6E4421D01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "worktrees", "worktrees", "{79802797-6956-8DCE-3D78-6FFCDB44B84D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charming-burnell-api", "charming-burnell-api", "{E1665E56-98D7-6641-6534-78D1CA6E4569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RagApi", ".claude\worktrees\charming-burnell-api\RagApi\RagApi.csproj", "{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79802797-6956-8DCE-3D78-6FFCDB44B84D} = {0AE7C77C-1A1D-D779-8C60-7AB6E4421D01}
+		{E1665E56-98D7-6641-6534-78D1CA6E4569} = {79802797-6956-8DCE-3D78-6FFCDB44B84D}
+		{A0B8D3D9-AB83-C5D6-5597-9BDB28D94AAC} = {E1665E56-98D7-6641-6534-78D1CA6E4569}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89331B8D-A2AF-4333-8A63-5766EFE838E6}
+	EndGlobalSection
+EndGlobal
