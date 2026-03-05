@@ -5,7 +5,7 @@
 ::  Uses pythonw.exe so no console window appears.
 :: ─────────────────────────────────────────────────────────────────
 
-set WIDGET=%~dp0ai-widget.py
+set WIDGET=D:\Codes\nihar840.github.io\.claude\worktrees\charming-burnell-api\ai-widget.py
 
 :: Try pythonw.exe first (no console window)
 where pythonw.exe >nul 2>&1
