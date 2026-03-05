@@ -5,10 +5,8 @@ export const profile = {
   email: 'nrmahajan840@gmail.com',
   location: 'Redmond, Washington, USA',
   social: {
-    twitter:   'https://twitter.com/NiharMahajan',
-    facebook:  'https://www.facebook.com/niharranjan.mahajan420',
-    linkedin:  'https://www.linkedin.com/in/nihar-ranjan-5bb54853/',
-    instagram: 'https://www.instagram.com/n_i_h_a_r___/',
+    linkedin:  'https://www.linkedin.com/in/ranjannihar/',
+    instagram: 'https://www.instagram.com/n_i_h_a_r_m_a_h_a_j_a_n/',
     github:    'https://github.com/nihar840',
   },
 };
