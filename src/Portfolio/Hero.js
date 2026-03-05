@@ -3,7 +3,7 @@ import { profile } from './data';
 import './Hero.css';
 
 const TITLES = [
-  'Senior Software Engineer',
+  'Software Engineer & Tech Lead',
   'React & TypeScript Developer',
   'AI / RAG Systems Builder',
   '.NET & Azure Engineer',
