@@ -81,9 +81,6 @@ function Hero({ onSearchOpen }) {
             <a href={profile.social.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="hero__social hero__social--github">
               <i className="fa fa-github" />
             </a>
-            <a href={profile.social.twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="hero__social hero__social--twitter">
-              <i className="fa fa-twitter" />
-            </a>
             <a href={profile.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="hero__social hero__social--instagram">
               <i className="fa fa-instagram" />
             </a>
