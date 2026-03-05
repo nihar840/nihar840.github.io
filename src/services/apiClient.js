@@ -20,3 +20,17 @@ export function streamSearch(query, collectionName = 'portfolio-docs', topK = 5)
     headers: { Accept: 'text/event-stream' },
   });
 }
+
+/** Quick liveness check — resolves true if the API is reachable, false otherwise */
+export async function checkHealth(timeoutMs = 4000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(`${API_BASE}/health`, { signal: controller.signal });
+    return res.ok;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
