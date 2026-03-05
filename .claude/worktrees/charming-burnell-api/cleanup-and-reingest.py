@@ -106,22 +106,32 @@ Key responsibilities:
     },
     {
         "documentId": "experience-specialist",
-        "title": "Specialist Programmer at Tech Mahindra",
+        "title": "Specialist Programmer at Infosys Ltd. — British Petroleum (BP RIO)",
         "text": """
-Nihar Ranjan worked as a Specialist Programmer at Tech Mahindra from July 2020 to February 2021.
-- Delivered critical React UI components under strict timelines for enterprise client projects.
+Nihar Ranjan worked as a Specialist Programmer at Infosys Ltd. from July 2020 to February 2021,
+deployed to the British Petroleum (BP RIO) account. Location: India.
+
+Key responsibilities:
+- Delivered critical UI components and reusable React modules under strict timelines and
+  quality expectations for BP RIO.
+- Maintained low defect rates through clean implementation and disciplined delivery practices.
 """
     },
     {
         "documentId": "experience-early",
-        "title": "Software Engineer at Tech Mahindra — Healthcare (.NET)",
+        "title": "Software Engineer at Infosys Ltd. — Walmart (Order Creation, Healthcare)",
         "text": """
-Nihar Ranjan worked as a Software Engineer at Tech Mahindra from July 2018 to June 2020.
-- Developed .NET MVC and VB.NET features for a healthcare order management system.
-- Gained foundational experience in .NET backend development and enterprise database integration.
+Nihar Ranjan worked as a Software Engineer at Infosys Ltd. from July 2018 to June 2020,
+deployed to the Walmart account (Order Creation — healthcare division). Location: India.
 
-Note: Nihar has NEVER worked at Infosys, Wipro, or Tata Consultancy Services (TCS).
-His employers have been: Microsoft (via Zen3/Tech Mahindra), Tech Mahindra, and Zen3.
+Key responsibilities:
+- Developed and maintained .NET MVC and VB.NET features for a healthcare order management
+  system for Walmart.
+- Implemented prescription validation rules and supported urgent production updates during
+  COVID-19.
+
+Note: Nihar's employers have been: Microsoft (via Tech Mahindra / Zen3), Tech Mahindra,
+Zen3, and Infosys Ltd. He has NOT worked at Wipro or Tata Consultancy Services (TCS).
 """
     },
     {
