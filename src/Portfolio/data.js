@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Nihar Ranjan',
   title: 'Senior Software Engineer',
-  tagline: 'Building enterprise AI systems at the intersection of cloud, retrieval, and great UX',
+  tagline: 'Senior full-stack engineer shipping enterprise products in the Microsoft ecosystem — React, .NET, Python, Azure',
   email: 'nrmahajan840@gmail.com',
   location: 'Redmond, Washington, USA',
   social: {
@@ -65,36 +65,37 @@ export const experience = [
   },
   {
     role: 'Software Engineer / Associate Team Lead',
-    company: 'Zen3 — Microsoft (FastTrack & Unified Action Tracker)',
+    company: 'Tech Mahindra / Zen3 — Microsoft (FastTrack & Unified Action Tracker)',
     period: 'Mar 2021 – Jun 2025',
     location: 'Redmond, Washington, USA',
     color: '#8b5cf6',
     highlights: [
-      'Shipped enterprise-grade automation workflows within Microsoft 365 Admin UX, end-to-end from UI to production',
-      'Acted as Associate Team Lead — led code reviews and mentored engineers across the team',
-      'Migrated backend workflows from Logic Apps to Azure Functions for improved scalability and cost efficiency',
-      'Built reusable React / TypeScript UI components for data-heavy enterprise applications',
+      'Shipped enterprise-grade wizards and workflows within Microsoft 365 Admin UX, owning features from Figma to production with accessibility and performance in mind',
+      'Acted as Associate Team Lead — code reviews, mentoring, and engineering guidance to keep delivery consistent and quality high',
+      'Migrated backend workflows from Logic Apps to Azure Functions, improving reliability and reducing operational noise',
+      'Built reusable UI components (filters, panels, grids, pagination) for data-heavy experiences backed by SQL / Cosmos APIs',
     ],
   },
   {
-    role: 'Specialist Programmer',
-    company: 'Tech Mahindra',
+    role: 'Specialist Programmer — British Petroleum (BP RIO)',
+    company: 'Infosys Ltd.',
     period: 'Jul 2020 – Feb 2021',
     location: 'India',
     color: '#06b6d4',
     highlights: [
-      'Delivered critical React UI components under strict timelines for enterprise client projects',
+      'Delivered critical UI components and reusable React modules under strict timelines and quality expectations for BP RIO',
+      'Maintained low defect rates through clean implementation and disciplined delivery practices',
     ],
   },
   {
-    role: 'Software Engineer',
-    company: 'Tech Mahindra',
+    role: 'Software Engineer — Walmart (Order Creation)',
+    company: 'Infosys Ltd.',
     period: 'Jul 2018 – Jun 2020',
     location: 'India',
     color: '#10b981',
     highlights: [
-      'Developed .NET MVC and VB.NET features for a healthcare order management system',
-      'Gained deep foundational experience in .NET backend development and enterprise database integration',
+      'Developed and maintained .NET MVC and VB.NET features for a healthcare order management system for Walmart',
+      'Implemented prescription validation rules and supported urgent production updates during COVID-19',
     ],
   },
 ];
@@ -145,10 +146,10 @@ export const projects = [
     link: null,
   },
   {
-    title: 'Healthcare Order Management System',
+    title: 'Walmart Order Management — Infosys',
     emoji: '🏥',
     description:
-      'Developed .NET MVC and VB.NET features for a healthcare order management platform. Focus on reliability, data integrity, and enterprise-grade backend architecture.',
+      'Developed .NET MVC and VB.NET features for a healthcare order management system for Walmart. Implemented prescription validation rules and supported critical production updates during COVID-19.',
     tags: ['.NET MVC', 'VB.NET', 'SQL Server', 'C#'],
     color: '#10b981',
     link: null,
