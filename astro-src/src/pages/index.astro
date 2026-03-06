@@ -27,7 +27,24 @@ import '../styles/animations.css';
        WORK ZONE — Manga Paper
   ════════════════════════════════════════ -->
   <div id="work-zone">
-    <WorkHero />
+
+    <!-- Work Zone Nav -->
+    <nav class="work-nav" aria-label="Work zone navigation">
+      <div class="work-nav__inner container">
+        <a class="work-nav__logo" href="#home">NR<span class="work-nav__dot">.</span></a>
+        <div class="work-nav__links">
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#ask-ai">Ask AI ✨</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="home">
+      <WorkHero />
+    </div>
     <Skills />
     <Experience />
     <Projects />
@@ -70,6 +87,61 @@ import '../styles/animations.css';
   </div>
 </Base>
 
+<style>
+/* ─── Work Nav (sits inside Work Zone, below toggle bar) ─── */
+.work-nav {
+  position: sticky;
+  top: 56px; /* height of ZoneToggle bar */
+  z-index: 800;
+  background: rgba(245, 240, 232, 0.92);
+  border-bottom: 2px solid var(--ink);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.work-nav__inner {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 24px;
+}
+
+.work-nav__logo {
+  font-family: -apple-system, 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.work-nav__dot { color: #6366f1; }
+
+.work-nav__links {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+}
+
+.work-nav__links a {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  padding: 5px 12px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.work-nav__links a:hover {
+  color: var(--accent);
+  background: rgba(230,57,70,0.06);
+}
+
+@media (max-width: 520px) {
+  .work-nav__links { display: none; }
+}
+</style>
+
 <script>
   // Restore zone from sessionStorage without React (no FOUC)
   const saved = sessionStorage.getItem('portfolio-zone');
@@ -80,7 +152,7 @@ import '../styles/animations.css';
     if (fun)  fun.classList.add('zone-visible');
   }
 
-  // Intersection Observer for scroll animations
+  // Intersection Observer for scroll-in animations
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -89,12 +161,12 @@ import '../styles/animations.css';
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row')
     .forEach(el => {
       (el as HTMLElement).style.opacity = '0';
-      (el as HTMLElement).style.transform = 'translateY(20px)';
+      (el as HTMLElement).style.transform = 'translateY(24px)';
       (el as HTMLElement).style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       obs.observe(el);
     });

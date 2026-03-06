@@ -23,25 +23,76 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://niharranjan.com" />
+    <meta property="og:image" content="https://niharranjan.com/Images/Profile pic.jpg" />
 
-    <!-- Favicon -->
+    <!-- Favicon — NR. style matching header logo -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-    <!-- Fonts -->
+    <!-- Preconnect for speed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&family=Permanent+Marker&display=swap"
-      rel="stylesheet"
-    />
 
-    <!-- Font Awesome for icons -->
+    <!--
+      NON-BLOCKING font load:
+      1. media="print" trick → browser loads without blocking render
+      2. onload swaps to media="all" so fonts kick in as soon as they arrive
+      3. <noscript> fallback for JS-disabled browsers
+    -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&family=Permanent+Marker&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&family=Permanent+Marker&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!--
+      Font Awesome — load asynchronously to eliminate render-blocking.
+      Only the brand + solid subsets we actually use are loaded.
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
       crossorigin="anonymous"
     />
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/solid.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+      crossorigin="anonymous"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+    </noscript>
+
+    <!-- Inline critical font fallback so layout doesn't shift while fonts load -->
+    <style>
+      /* Font fallbacks — prevents invisible text during load */
+      .manga-title, h1, h2, .chapter-label,
+      .skill-card__cat, .timeline-card__role,
+      .fun-hero__title, .btn-manga, .zone-btn {
+        font-family: Impact, 'Arial Black', Arial, sans-serif;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+    </style>
 
     <title>{title}</title>
   </head>

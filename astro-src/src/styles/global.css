@@ -70,7 +70,7 @@ body {
   background: var(--paper);
   transform: translateX(0);
   overflow-y: auto;
-  padding-top: 72px;
+  padding-top: 56px; /* just the toggle bar — work nav is sticky inside */
 }
 #work-zone.zone-hidden {
   transform: translateX(-110vw);
