@@ -31,13 +31,15 @@ import '../styles/animations.css';
     <!-- Work Zone Nav -->
     <nav class="work-nav" aria-label="Work zone navigation">
       <div class="work-nav__inner container">
-        <a class="work-nav__logo" href="#home">NR<span class="work-nav__dot">.</span></a>
+        <a class="work-nav__logo" href="#home" data-zone-link="work">
+          NR<span class="work-nav__dot">.</span>
+        </a>
         <div class="work-nav__links">
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#ask-ai">Ask AI ✨</a>
-          <a href="#contact">Contact</a>
+          <a href="#skills"     data-zone-link="work">Skills</a>
+          <a href="#experience" data-zone-link="work">Experience</a>
+          <a href="#projects"   data-zone-link="work">Projects</a>
+          <a href="#ask-ai"     data-zone-link="work">Ask AI ✨</a>
+          <a href="#contact"    data-zone-link="work">Contact</a>
         </div>
       </div>
     </nav>
@@ -69,12 +71,12 @@ import '../styles/animations.css';
     <Philosophy />
 
     <!-- Sliding Puzzle arc -->
-    <section class="fun-section-bg">
+    <section class="fun-section-bg" id="puzzle-section">
       <div class="container">
         <div class="fun-section-head">
           <div class="fun-hero__chapter" style="margin-bottom:8px;">Arc 05 · The Final Challenge</div>
           <h2>🧩 Solve The Puzzle</h2>
-          <p>Slide the tiles, rearrange Luffy. Prove you're Nakama material!</p>
+          <p>Slide the tiles into order. Prove you're Nakama material! 🏴‍☠️</p>
         </div>
         <SlidingPuzzle client:load />
       </div>
@@ -88,13 +90,13 @@ import '../styles/animations.css';
 </Base>
 
 <style>
-/* ─── Work Nav (sits inside Work Zone, below toggle bar) ─── */
+/* ─── Work Nav ─── */
 .work-nav {
   position: sticky;
-  top: 56px; /* height of ZoneToggle bar */
+  top: 56px;
   z-index: 800;
-  background: rgba(245, 240, 232, 0.92);
-  border-bottom: 2px solid var(--ink);
+  background: rgba(245, 240, 232, 0.95);
+  border-bottom: 2.5px solid var(--ink);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -107,13 +109,14 @@ import '../styles/animations.css';
 }
 
 .work-nav__logo {
-  font-family: -apple-system, 'Arial Black', sans-serif;
+  font-family: -apple-system, 'Arial Black', Arial, sans-serif;
   font-weight: 900;
   font-size: 18px;
   color: var(--ink);
   letter-spacing: -0.04em;
   flex-shrink: 0;
   text-decoration: none;
+  line-height: 1;
 }
 .work-nav__dot { color: #6366f1; }
 
@@ -122,28 +125,41 @@ import '../styles/animations.css';
   gap: 2px;
   flex: 1;
 }
-
 .work-nav__links a {
   font-size: 12px;
   font-weight: 700;
   color: var(--ink-soft);
   padding: 5px 12px;
   border-radius: 4px;
+  cursor: pointer;
   transition: color 0.15s, background 0.15s;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
 }
-.work-nav__links a:hover {
+.work-nav__links a:hover,
+.work-nav__links a.active {
   color: var(--accent);
-  background: rgba(230,57,70,0.06);
+  background: rgba(230,57,70,0.07);
 }
 
-@media (max-width: 520px) {
-  .work-nav__links { display: none; }
+@media (max-width: 600px) {
+  .work-nav__links { gap: 0; }
+  .work-nav__links a { padding: 4px 8px; font-size: 11px; }
+  .work-nav__logo { font-size: 16px; }
+}
+@media (max-width: 420px) {
+  .work-nav__links a { display: none; }
+  .work-nav__links a:last-child,
+  .work-nav__links a:first-child { display: inline-block; }
 }
 </style>
 
 <script>
-  // Restore zone from sessionStorage without React (no FOUC)
+/* ══════════════════════════════════════════════════
+   ZONE RESTORE — no FOUC
+   ══════════════════════════════════════════════════ */
+(function () {
   const saved = sessionStorage.getItem('portfolio-zone');
   if (saved === 'fun') {
     const work = document.getElementById('work-zone');
@@ -151,23 +167,98 @@ import '../styles/animations.css';
     if (work) work.classList.add('zone-hidden');
     if (fun)  fun.classList.add('zone-visible');
   }
+})();
 
-  // Intersection Observer for scroll-in animations
+/* ══════════════════════════════════════════════════
+   ANCHOR SCROLL FIX
+   Both zones are position:fixed; overflow-y:auto
+   → browser's default anchor scroll hits body, not the zone div.
+   We intercept all href="#..." clicks and manually scrollTo.
+   ══════════════════════════════════════════════════ */
+function setupAnchorScroll() {
+  const NAV_OFFSET = 56 + 44 + 8; // toggle (56) + work-nav (44) + breathing room
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = (link as HTMLAnchorElement).getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      // Figure out which zone contains this target
+      const workZone = document.getElementById('work-zone');
+      const funZone  = document.getElementById('fun-zone');
+      const zone = workZone?.contains(target) ? workZone : funZone?.contains(target) ? funZone : null;
+      if (!zone) return;
+
+      e.preventDefault();
+
+      // Target's offset relative to the zone container
+      const zoneRect   = zone.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const scrollTo   = zone.scrollTop + (targetRect.top - zoneRect.top) - NAV_OFFSET;
+
+      zone.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+    });
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVE NAV HIGHLIGHT
+   ══════════════════════════════════════════════════ */
+function setupActiveNav() {
+  const workZone = document.getElementById('work-zone');
+  if (!workZone) return;
+
+  const sections = ['home','skills','experience','projects','ask-ai','contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.work-nav__links a');
+
+  workZone.addEventListener('scroll', () => {
+    const scrollY = workZone.scrollTop + 120;
+    let current = 'home';
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollY) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      const hrefId = a.getAttribute('href')?.slice(1);
+      a.classList.toggle('active', hrefId === current);
+    });
+  }, { passive: true });
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLL-IN ANIMATIONS (Intersection Observer)
+   ══════════════════════════════════════════════════ */
+function setupAnimations() {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        (e.target as HTMLElement).style.opacity = '1';
-        (e.target as HTMLElement).style.transform = 'translateY(0) rotate(0)';
-        obs.unobserve(e.target);
+        const el = e.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0) rotate(0)';
+        obs.unobserve(el);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row')
+  document.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row, .anime-card, .flute-section')
     .forEach(el => {
-      (el as HTMLElement).style.opacity = '0';
-      (el as HTMLElement).style.transform = 'translateY(24px)';
-      (el as HTMLElement).style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      const h = el as HTMLElement;
+      h.style.opacity = '0';
+      h.style.transform = 'translateY(28px)';
+      h.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       obs.observe(el);
     });
+}
+
+// Run everything after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  setupAnchorScroll();
+  setupActiveNav();
+  setupAnimations();
+});
 </script>

@@ -1,13 +1,54 @@
-/* ─── Sliding Puzzle ─── */
+/* ══════════════════════════════════════════
+   SLIDING PUZZLE — Full Redesign
+   Visible tiles, anime colors, manga style
+   ══════════════════════════════════════════ */
+
 .puzzle-wrap {
-  max-width: 380px;
+  max-width: 360px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
+/* ─── Goal hint row ─── */
+.puzzle-goal-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.puzzle-goal__label {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--fun-text2, #94a3b8);
+  margin-right: 4px;
+}
+
+.puzzle-goal-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.puzzle-goal-chip--empty {
+  background: rgba(255,255,255,0.05);
+  border: 2px dashed rgba(244,162,97,0.3);
+  color: rgba(244,162,97,0.5);
+  font-size: 12px;
+}
+
+/* ─── Header row ─── */
 .puzzle-header {
   display: flex;
   align-items: center;
@@ -16,87 +57,162 @@
 }
 
 .puzzle-moves {
-  font-family: var(--font-manga);
-  font-size: 16px;
-  color: var(--fun-accent);
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 18px;
+  color: #f4a261;
   letter-spacing: 0.05em;
 }
 
-.puzzle-reset-btn {
-  font-size: 13px !important;
-  padding: 6px 14px !important;
-  border-color: var(--fun-accent) !important;
-  color: var(--fun-accent) !important;
-  box-shadow: 3px 3px 0 var(--fun-accent) !important;
+.puzzle-shuffle-btn {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  padding: 6px 16px;
+  background: transparent;
+  border: 2.5px solid #f4a261;
+  border-radius: 6px;
+  color: #f4a261;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #f4a261;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.puzzle-shuffle-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #f4a261;
+}
+.puzzle-shuffle-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #f4a261;
+}
+.puzzle-shuffle-btn--win {
+  margin-top: 12px;
+  background: #f4a261;
+  color: #0d0d0d;
+  border-color: #f4a261;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+  font-size: 16px;
 }
 
+/* ─── The Grid ─── */
 .puzzle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  width: 330px;
-  height: 330px;
-  padding: 6px;
-  background: rgba(244,162,97,0.1);
-  border: 3px solid rgba(244,162,97,0.4);
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(244,162,97,0.1);
+  gap: 8px;
+  width: 318px;
+  height: 318px;
+  padding: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 3px solid rgba(244,162,97,0.5);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(244,162,97,0.15),
+    0 8px 32px rgba(0,0,0,0.5);
+  transition: box-shadow 0.3s;
 }
 
 .puzzle-grid--won {
-  animation: win-flash 0.8s ease 3;
-  border-color: var(--fun-accent);
-  box-shadow: 0 0 40px rgba(244,162,97,0.4);
+  animation: win-flash 0.6s ease 3;
+  box-shadow:
+    0 0 0 3px #f4a261,
+    0 0 40px rgba(244,162,97,0.5);
 }
 
+/* ─── Individual Tiles ─── */
 .puzzle-tile {
-  border-radius: 8px;
-  border: 2px solid rgba(244,162,97,0.3);
-  cursor: pointer;
+  border-radius: 10px;
   position: relative;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 4px;
-  transition: transform 0.12s ease, box-shadow 0.12s;
-  background-color: var(--fun-card);
-  background-repeat: no-repeat;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
 }
 
-.puzzle-tile:hover:not(.puzzle-tile--empty) {
-  transform: scale(0.96);
-  box-shadow: 0 0 12px rgba(244,162,97,0.3);
+.puzzle-tile--clickable {
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
-.puzzle-tile:active:not(.puzzle-tile--empty) {
-  transform: scale(0.93);
+.puzzle-tile--clickable:hover {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.puzzle-tile--clickable:active {
+  transform: scale(0.9);
 }
 
 .puzzle-tile--empty {
-  background: transparent !important;
-  border: 2px dashed rgba(244,162,97,0.2) !important;
+  background: rgba(255,255,255,0.03) !important;
+  border: 2px dashed rgba(244,162,97,0.25) !important;
   cursor: default;
+  box-shadow: none !important;
 }
 
-.puzzle-tile__label {
-  font-family: var(--font-manga);
-  font-size: 10px;
-  color: rgba(255,255,255,0.7);
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-  letter-spacing: 0.05em;
+/* ─── Tile inner content ─── */
+.puzzle-tile__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+.puzzle-tile__emoji {
+  font-size: 28px;
   line-height: 1;
-  background: rgba(0,0,0,0.4);
-  border-radius: 3px;
-  padding: 1px 4px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.puzzle-tile__num {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+/* ─── Tip text ─── */
+.puzzle-tip {
+  font-size: 11px;
+  color: var(--fun-text2, #94a3b8);
+  text-align: center;
+  opacity: 0.7;
 }
 
 /* ─── Win overlay ─── */
 .puzzle-win {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  animation: ink-drop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.puzzle-win__box {
+  background: var(--fun-card, #112038);
+  border: 3px solid #f4a261;
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
+  box-shadow: 6px 6px 0 rgba(244,162,97,0.4);
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  text-align: center;
-  animation: ink-drop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  gap: 6px;
+}
+
+.puzzle-win__emoji { font-size: 40px; }
+.puzzle-win__title {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 28px;
+  color: #f4a261;
+  letter-spacing: 0.08em;
+}
+.puzzle-win__sub {
+  font-size: 13px;
+  color: var(--fun-text2, #94a3b8);
+  line-height: 1.5;
 }
