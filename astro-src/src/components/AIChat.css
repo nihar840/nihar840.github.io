@@ -1,0 +1,654 @@
+/* ══════════════════════════════════════════════
+   AIChat.css  —  Rope Pull · Drop Panel
+   Manga paper aesthetic
+   ══════════════════════════════════════════════ */
+
+/* ── Rope ──────────────────────────────────── */
+.aic-rope {
+  position: fixed;
+  top: 56px;          /* hang from bottom edge of toggle bar */
+  left: 22px;
+  z-index: 9993;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Rope retracts UP into the bar when panel drops — like a real blind cord */
+.aic-rope--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-70px);
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.55, 0, 0.7, 0.4);
+}
+
+/* SVG cord — sways left–right continuously */
+.aic-rope__cord {
+  display: block;
+  transform-origin: top center;
+  animation: rope-sway 3.8s ease-in-out infinite;
+}
+
+/* Knob — the paper tag to pull */
+.aic-rope__knob {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 42px;
+  height: 42px;
+  background: #f5f0e8;               /* manga paper */
+  border: 2.5px solid #0d0d0d;
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 #0d0d0d;
+  color: #e63946;
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  justify-content: center;
+  transform-origin: top center;
+  animation: rope-sway 3.8s ease-in-out infinite;
+  transition: background 0.15s, color 0.15s, box-shadow 0.12s, transform 0.12s;
+}
+
+.aic-rope:hover .aic-rope__cord,
+.aic-rope:hover .aic-rope__knob {
+  animation: rope-wiggle 0.45s ease-in-out infinite;
+}
+.aic-rope:hover .aic-rope__knob {
+  background: #e63946;
+  color: #fff;
+}
+
+/* Pulling: cord goes taut, knob yanks down */
+.aic-rope--pulling .aic-rope__cord {
+  animation: cord-taut 0.28s ease forwards;
+}
+.aic-rope--pulling .aic-rope__knob {
+  animation: knob-yank 0.28s ease forwards;
+}
+
+/* Tooltip that appears on hover */
+.aic-rope__tip {
+  position: absolute;
+  left: 52px;
+  top: 60px;
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: #0d0d0d;
+  padding: 3px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  /* little arrow pointing left */
+}
+.aic-rope__tip::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 6px solid #0d0d0d;
+}
+.aic-rope:hover .aic-rope__tip { opacity: 1; }
+
+/* ── Rope keyframes ── */
+@keyframes rope-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+@keyframes rope-wiggle {
+  0%, 100% { transform: rotate(-5deg); }
+  50%       { transform: rotate(5deg); }
+}
+@keyframes cord-taut {
+  0%   { transform: rotate(-3deg); }
+  40%  { transform: rotate(0deg) scaleY(0.96); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes knob-yank {
+  0%   { transform: translateY(0) rotate(-3deg); }
+  40%  { transform: translateY(10px) rotate(0deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ── Backdrop ─────────────────────────────── */
+.aic-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9991;
+  background: rgba(13, 13, 13, 0.28);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.aic-backdrop--on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Drop panel ────────────────────────────── */
+.aic-panel {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: min(440px, 100vw);
+  max-height: calc(100dvh - 56px);
+  z-index: 9992;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Manga paper */
+  background: #f5f0e8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  border-right: 3px solid #0d0d0d;
+  border-bottom: 3px solid #0d0d0d;
+  box-shadow: 6px 6px 0 rgba(13,13,13,0.15), 0 8px 32px rgba(13,13,13,0.12);
+
+  /* Curtain/blind effect — panel clips in from the top edge */
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.aic-panel--open {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* Hanging loop hooks at top — visual flair that looks attached to a rail */
+.aic-panel__hooks {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 14px;
+  padding: 0 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+.aic-panel__hooks span {
+  width: 10px;
+  height: 10px;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 50%;
+  background: #7a5c10;   /* same brown as rope */
+  flex-shrink: 0;
+}
+
+/* ── Panel Header ── */
+.aic-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px 12px;
+  background: #0d0d0d;
+  border-bottom: 3px solid #0d0d0d;
+  flex-shrink: 0;
+}
+.aic-header__chap {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e63946;
+  margin-bottom: 3px;
+}
+.aic-header__title {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: #fff;
+  line-height: 1;
+}
+.aic-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.18);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.aic-close:hover {
+  background: rgba(230,57,70,0.35);
+  border-color: #e63946;
+}
+
+/* ── Status strip ── */
+.aic-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  background: #e8e0d0;
+  border-bottom: 1.5px solid rgba(13,13,13,0.1);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  flex-shrink: 0;
+}
+.aic-status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 5px rgba(16,185,129,0.5);
+  animation: blink-dot 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes blink-dot {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.aic-status em { font-style: normal; color: #e63946; }
+
+/* ── Messages ── */
+.aic-msgs {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #e63946 transparent;
+}
+.aic-msgs::-webkit-scrollbar { width: 4px; }
+.aic-msgs::-webkit-scrollbar-thumb { background: #e63946; border-radius: 2px; }
+
+/* ── Empty state ── */
+.aic-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 12px;
+  text-align: center;
+}
+.aic-empty__icon {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 32px;
+  color: #e63946;
+  line-height: 1;
+  animation: pulse-star 2s ease-in-out infinite;
+}
+@keyframes pulse-star {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+.aic-empty p {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 270px;
+}
+
+/* ── Hint chips ── */
+.aic-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.aic-hint {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  background: #fff;
+  border: 2px solid #0d0d0d;
+  border-radius: 4px;
+  color: #0d0d0d;
+  box-shadow: 2px 2px 0 #0d0d0d;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, color 0.1s;
+}
+.aic-hint:hover {
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 #0d0d0d;
+  color: #e63946;
+}
+
+/* ── Message rows ── */
+.aic-msg { display: flex; flex-direction: column; gap: 5px; }
+.aic-msg--user      { align-items: flex-end; }
+.aic-msg--assistant { align-items: flex-start; }
+
+.aic-avatar {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 12px;
+  color: #e63946;
+  letter-spacing: 0.05em;
+  margin-bottom: 1px;
+}
+
+.aic-bubble {
+  max-width: 90%;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.aic-msg--user .aic-bubble {
+  background: #0d0d0d;
+  color: #fff;
+  border-radius: 12px 12px 3px 12px;
+  box-shadow: 3px 3px 0 rgba(13,13,13,0.25);
+}
+.aic-msg--assistant .aic-bubble {
+  background: #fff;
+  color: #0d0d0d;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 12px 12px 12px 3px;
+  box-shadow: 4px 4px 0 #0d0d0d;
+}
+
+/* ── Loading dots ── */
+.aic-dots {
+  display: flex;
+  gap: 5px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 12px 12px 12px 3px;
+  box-shadow: 4px 4px 0 #0d0d0d;
+}
+.aic-dots span {
+  width: 7px;
+  height: 7px;
+  background: #0d0d0d;
+  border-radius: 50%;
+  animation: dot-pulse 1.2s ease infinite;
+}
+.aic-dots span:nth-child(2) { animation-delay: 0.18s; }
+.aic-dots span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes dot-pulse {
+  0%,80%,100% { transform: scale(0.5); opacity: 0.4; }
+  40%          { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Streaming cursor ── */
+.aic-cursor {
+  display: inline-block;
+  color: #e63946;
+  animation: cur-blink 0.75s step-start infinite;
+}
+@keyframes cur-blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ── Sources ── */
+.aic-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-left: 2px;
+}
+.aic-src {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.aic-src.hi  { background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3); color: #059669; }
+.aic-src.mid { background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.3); color: #d97706; }
+.aic-src.lo  { background: rgba(100,116,139,.08); border: 1px solid rgba(100,116,139,.2); color: #64748b; }
+
+/* ── Input row ── */
+.aic-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 2.5px solid #0d0d0d;
+  background: #e8e0d0;
+  flex-shrink: 0;
+}
+.aic-input {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Nunito', -apple-system, sans-serif;
+  font-size: 13px;
+  padding: 9px 12px;
+  background: #fff;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 6px;
+  color: #0d0d0d;
+  box-shadow: 3px 3px 0 #0d0d0d;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.aic-input:focus {
+  border-color: #e63946;
+  box-shadow: 3px 3px 0 #e63946;
+}
+.aic-input::placeholder { color: #94a3b8; }
+.aic-input:disabled { opacity: 0.6; }
+
+.aic-send {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e63946;
+  color: #fff;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #0d0d0d;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.aic-send:hover:not(:disabled) {
+  transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 #0d0d0d;
+}
+.aic-send:active:not(:disabled) {
+  transform: translate(1px,1px);
+  box-shadow: 1px 1px 0 #0d0d0d;
+}
+.aic-send:disabled { background: #94a3b8; box-shadow: 2px 2px 0 rgba(13,13,13,.2); cursor: not-allowed; }
+
+/* ── Status strip modifiers ── */
+.aic-status--offline {
+  background: rgba(230,57,70,0.08);
+  color: #e63946;
+}
+.aic-status__dot--checking {
+  background: #f59e0b;
+  box-shadow: 0 0 5px rgba(245,158,11,0.5);
+  animation: blink-dot 0.9s ease-in-out infinite;
+}
+.aic-status__dot--offline {
+  background: #e63946;
+  box-shadow: 0 0 5px rgba(230,57,70,0.5);
+  animation: none;
+}
+
+/* ── Retry button ── */
+.aic-retry {
+  margin-left: auto;
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 2px 10px;
+  background: #e63946;
+  color: #fff;
+  border: 2px solid #0d0d0d;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 #0d0d0d;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.aic-retry:hover {
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 #0d0d0d;
+}
+
+/* ── Checking state dots ── */
+.aic-checking-dots {
+  display: flex;
+  gap: 6px;
+}
+.aic-checking-dots span {
+  width: 9px;
+  height: 9px;
+  background: #e63946;
+  border-radius: 50%;
+  animation: dot-pulse 1.2s ease infinite;
+}
+.aic-checking-dots span:nth-child(2) { animation-delay: 0.18s; }
+.aic-checking-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+/* ── Input row — disabled overlay ── */
+.aic-input-row--disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.aic-input-row--disabled .aic-input {
+  background: #e8e0d0;
+  color: #94a3b8;
+}
+
+/* ── Offline state ── */
+.aic-offline-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px 24px;
+  text-align: center;
+}
+.aic-offline-state__icon {
+  font-size: 38px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+.aic-offline-state__title {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: #e63946;
+  line-height: 1;
+}
+.aic-offline-state__body {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #475569;
+  max-width: 330px;
+  margin: 0;
+}
+.aic-offline-state__body strong { color: #0d0d0d; }
+
+/* Setup steps */
+.aic-offline-state__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 340px;
+  background: #fff;
+  border: 2px solid #0d0d0d;
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 3px 3px 0 #0d0d0d;
+  text-align: left;
+}
+.aic-offline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.5;
+}
+.aic-offline-step__num {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: #e63946;
+  color: #fff;
+  border-radius: 50%;
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.aic-offline-step code {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
+/* Sample answer preview */
+.aic-offline-state__sample {
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
+}
+.aic-offline-sample__label {
+  font-family: 'Bangers', Impact, cursive;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.aic-offline-sample__bubble {
+  background: #fff;
+  border: 2.5px solid #0d0d0d;
+  border-radius: 10px 10px 10px 3px;
+  box-shadow: 3px 3px 0 rgba(13,13,13,0.15);
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #334155;
+  font-style: italic;
+}
+
+/* ── Mobile ── */
+@media (max-width: 540px) {
+  /* Rope sits a bit further right so it's not clipped */
+  .aic-rope { left: 14px; }
+  .aic-rope__tip { display: none; }
+
+  /* Panel goes full-width, slides down from top */
+  .aic-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom-right-radius: 0;
+  }
+}

@@ -6,7 +6,7 @@ import Skills from '../components/work/Skills.astro';
 import Experience from '../components/work/Experience.astro';
 import Projects from '../components/work/Projects.astro';
 import Contact from '../components/work/Contact.astro';
-import AskAI from '../components/work/AskAI';
+import AIChat from '../components/AIChat';
 
 import FunHero from '../components/fun/FunHero.astro';
 import FluteMaster from '../components/fun/FluteMaster.astro';
@@ -24,6 +24,9 @@ import '../styles/animations.css';
   <!-- ══ ZONE TOGGLE ══ -->
   <ZoneToggle client:load />
 
+  <!-- ══ AI CHAT FLYOUT — floats above both zones ══ -->
+  <AIChat client:load />
+
   <!-- ══ WORK ZONE ══ -->
   <div id="work-zone">
     <nav class="work-nav" aria-label="Section navigation">
@@ -33,7 +36,6 @@ import '../styles/animations.css';
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#ask-ai">Ask AI ✨</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -43,9 +45,6 @@ import '../styles/animations.css';
     <Skills />
     <Experience />
     <Projects />
-    <section class="section" id="ask-ai">
-      <div class="container"><AskAI client:load /></div>
-    </section>
     <Contact />
   </div>
 
@@ -122,74 +121,131 @@ import '../styles/animations.css';
 </style>
 
 <script>
-/* ── ZONE RESTORE (no FOUC) ── */
-(function () {
+/* ══════════════════════════════════════════════
+   PORTFOLIO SCRIPTS
+   Astro compiles this as a module script (deferred).
+   DOM is fully parsed when this runs — no DOMContentLoaded needed.
+   ══════════════════════════════════════════════ */
+
+/* ── ZONE RESTORE — runs immediately, no flash ── */
+(function restoreZone() {
   const z = sessionStorage.getItem('portfolio-zone');
   if (z === 'fun') {
     document.getElementById('work-zone')?.classList.add('zone-hidden');
     document.getElementById('fun-zone')?.classList.add('zone-visible');
   }
+  // Always reset both zones to top — prevents browser scroll-restoration
+  // from dumping the user mid-page or at the bottom
+  document.getElementById('work-zone')?.scrollTo(0, 0);
+  document.getElementById('fun-zone')?.scrollTo(0, 0);
 })();
 
-/* ── ANCHOR SCROLL (zones are position:fixed — body scroll = dead) ── */
-function anchorScroll() {
-  const OFFSET = 56 + 44 + 12; // toggle-bar + work-nav + breathing
+/* ── ANCHOR SCROLL ──────────────────────────────
+   Both zones are position:fixed with overflow-y:auto.
+   Browser default scroll targets document.body (which never scrolls).
+   We intercept clicks and call zone.scrollTo() directly.
+   ─────────────────────────────────────────────── */
+function initAnchorScroll() {
+  const OFFSET = 56 + 44 + 16; // toggle-bar(56) + work-nav(44) + breathing(16)
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const id = (link as HTMLAnchorElement).getAttribute('href')?.slice(1);
+    link.addEventListener('click', (e) => {
+      const href = (link as HTMLAnchorElement).getAttribute('href') ?? '';
+      const id = href.slice(1);
       if (!id) return;
+
       const target = document.getElementById(id);
       if (!target) return;
 
       const wz = document.getElementById('work-zone')!;
       const fz = document.getElementById('fun-zone')!;
+
+      // Find which zone contains the target
       const zone = wz.contains(target) ? wz : fz.contains(target) ? fz : null;
       if (!zone) return;
 
       e.preventDefault();
-      const zRect = zone.getBoundingClientRect();
-      const tRect = target.getBoundingClientRect();
-      zone.scrollTo({ top: zone.scrollTop + tRect.top - zRect.top - OFFSET, behavior: 'smooth' });
+
+      // Calculate absolute offset of target from zone's scroll origin
+      // offsetTop is relative to the zone (its nearest positioned ancestor)
+      let absTop = 0;
+      let el: HTMLElement | null = target;
+      while (el && el !== zone) {
+        absTop += el.offsetTop;
+        el = el.offsetParent as HTMLElement | null;
+      }
+
+      // Use work-nav offset only for work zone
+      const navOffset = zone === wz ? OFFSET : 56 + 16;
+      zone.scrollTo({ top: absTop - navOffset, behavior: 'smooth' });
     });
   });
 }
 
-/* ── ACTIVE NAV LINK ── */
-function activeNav() {
+/* ── ACTIVE NAV LINK ─────────────────────────── */
+function initActiveNav() {
   const wz = document.getElementById('work-zone');
   if (!wz) return;
-  const ids = ['home','skills','experience','projects','ask-ai','contact'];
-  const sections = ids.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+
+  const ids = ['home', 'skills', 'experience', 'projects', 'contact'];
   const links = document.querySelectorAll<HTMLAnchorElement>('.work-nav__links a');
 
   wz.addEventListener('scroll', () => {
-    const top = wz.scrollTop + 120;
+    const scrollMid = wz.scrollTop + 120;
     let cur = 'home';
-    sections.forEach(s => { if (s.offsetTop <= top) cur = s.id; });
-    links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === `#${cur}`));
+
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        // Walk up to get offsetTop relative to zone
+        let top = 0;
+        let node: HTMLElement | null = el;
+        while (node && node !== wz) {
+          top += node.offsetTop;
+          node = node.offsetParent as HTMLElement | null;
+        }
+        if (top <= scrollMid) cur = id;
+      }
+    });
+
+    links.forEach(a => {
+      a.classList.toggle('is-active', a.getAttribute('href') === `#${cur}`);
+    });
   }, { passive: true });
 }
 
-/* ── SUBTLE CARD ENTRANCE (CSS class toggle — no opacity:0 in JS) ── */
-function cardEntrance() {
-  // Only add the animation class when a card enters view — it starts visible!
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('card-entered');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.05 });
+/* ── CARD ENTRANCE ANIMATION ───────────────────
+   Cards are ALWAYS visible — the class just adds a pop-in effect.
+   Uses IntersectionObserver with zone as root for correct detection.
+   ─────────────────────────────────────────────── */
+function initCardEntrance() {
+  const wz = document.getElementById('work-zone');
+  const fz = document.getElementById('fun-zone');
 
-  document.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row, .anime-card')
-    .forEach(el => obs.observe(el));
+  function observeInZone(zone: Element | null) {
+    if (!zone) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('card-entered');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: zone,           // use the zone as the scroll viewport
+      threshold: 0.05,
+    });
+
+    zone.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row, .anime-card')
+      .forEach(el => obs.observe(el));
+  }
+
+  observeInZone(wz);
+  observeInZone(fz);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  anchorScroll();
-  activeNav();
-  cardEntrance();
-});
+/* ── INIT — module script runs after DOM is parsed ── */
+initAnchorScroll();
+initActiveNav();
+initCardEntrance();
 </script>

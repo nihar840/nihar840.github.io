@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
+    "@fontsource/bangers": "^5.2.8",
+    "@fontsource/nunito": "^5.2.7",
+    "@fontsource/permanent-marker": "^5.2.7",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.17.1",

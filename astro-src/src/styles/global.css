@@ -3,7 +3,13 @@
    "The Grand Design System"
    ═══════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&family=Permanent+Marker&display=swap');
+/* Self-hosted fonts — zero CDN round-trip, eliminates render blocking */
+@import '@fontsource/bangers/latin.css';
+@import '@fontsource/nunito/latin-400.css';
+@import '@fontsource/nunito/latin-700.css';
+@import '@fontsource/nunito/latin-800.css';
+@import '@fontsource/permanent-marker/latin.css';
+/* Note: Nunito 600 removed — browser interpolates between 400 and 700, visually identical */
 
 /* ─── CSS Custom Properties ─── */
 :root {
@@ -60,7 +66,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;          /* MUST be fixed height so overflow-y: auto can scroll */
+  overflow-y: auto;
+  overflow-x: hidden;     /* prevent horizontal scroll during transitions */
+  -webkit-overflow-scrolling: touch; /* smooth momentum scroll on iOS */
   transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1),
               opacity 0.45s ease;
   will-change: transform;
@@ -69,8 +78,8 @@ body {
 #work-zone {
   background: var(--paper);
   transform: translateX(0);
-  overflow-y: auto;
   padding-top: 56px; /* just the toggle bar — work nav is sticky inside */
+  scroll-padding-top: 112px; /* toggle(56) + nav(44) + breathing(12) */
 }
 #work-zone.zone-hidden {
   transform: translateX(-110vw);
@@ -80,8 +89,8 @@ body {
 #fun-zone {
   background: var(--fun-bg);
   transform: translateX(110vw);
-  overflow-y: auto;
   padding-top: 72px;
+  scroll-padding-top: 80px;
 }
 #fun-zone.zone-visible {
   transform: translateX(0);
