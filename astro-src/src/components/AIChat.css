@@ -242,7 +242,7 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #64748b;
+  color: #4b5563;
   flex-shrink: 0;
 }
 .aic-status__dot {
@@ -419,7 +419,7 @@
 }
 .aic-src.hi  { background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3); color: #059669; }
 .aic-src.mid { background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.3); color: #d97706; }
-.aic-src.lo  { background: rgba(100,116,139,.08); border: 1px solid rgba(100,116,139,.2); color: #64748b; }
+.aic-src.lo  { background: rgba(100,116,139,.08); border: 1px solid rgba(100,116,139,.2); color: #4b5563; }
 
 /* ── Input row ── */
 .aic-input-row {

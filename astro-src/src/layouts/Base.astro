@@ -8,6 +8,8 @@ const {
   title = 'Nihar Ranjan — Software Engineer & Tech Lead',
   description = 'Full-stack engineer and tech lead shipping enterprise products in the Microsoft ecosystem — React, .NET, Python, Azure',
 } = Astro.props;
+
+const canonical = 'https://niharranjan.com/';
 ---
 
 <!doctype html>
@@ -16,20 +18,64 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0d0d0d" />
+    <meta name="author" content="Nihar Ranjan" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://niharranjan.com" />
-    <meta property="og:image" content="https://niharranjan.com/Images/Profile pic.jpg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://niharranjan.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://niharranjan.com/og-image.jpg" />
 
     <!-- Favicon — NR. style matching header logo -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <title>{title}</title>
+
+    <!-- JSON-LD Person Schema — helps Google understand who this site is about -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nihar Ranjan",
+      "url": "https://niharranjan.com",
+      "jobTitle": "Senior Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Tech Mahindra (Microsoft Cosmic Portal)"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Kalinga Institute of Industrial Technology (KIIT)"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Redmond",
+        "addressRegion": "WA",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/ranjannihar/",
+        "https://github.com/nihar840",
+        "https://www.instagram.com/n_i_h_a_r_m_a_h_a_j_a_n/"
+      ],
+      "knowsAbout": ["React", "TypeScript", ".NET", "Python", "Azure", "AI Systems", "RAG", "Cosmos DB"],
+      "description": description
+    })} />
   </head>
   <body>
     <slot />

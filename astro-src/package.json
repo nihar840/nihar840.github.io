@@ -21,6 +21,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "gh-pages": "^6.3.0"
   }
 }

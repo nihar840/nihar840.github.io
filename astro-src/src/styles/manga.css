@@ -417,7 +417,7 @@
 }
 .timeline-card__meta {
   font-size: 12px;
-  color: #64748b;
+  color: #4b5563;
   margin-bottom: 12px;
   display: flex;
   gap: 12px;
@@ -748,7 +748,7 @@
 }
 .award-row__icon { font-size: 22px; flex-shrink: 0; }
 .award-row__title { font-weight: 700; font-size: 14px; color: var(--ink); }
-.award-row__org { font-size: 12px; color: #64748b; }
+.award-row__org { font-size: 12px; color: #4b5563; }
 .award-row__detail { font-size: 12px; color: var(--accent); margin-left: auto; font-weight: 600; }
 
 /* ─── Fun section background ─── */

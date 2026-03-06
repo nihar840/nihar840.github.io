@@ -304,7 +304,7 @@ export default function AIChat() {
           {isChecking && messages.length === 0 && (
             <div className="aic-empty">
               <div className="aic-checking-dots"><span/><span/><span/></div>
-              <p style={{color:'#64748b', fontSize:'12px', marginTop:'8px'}}>Connecting to RAG server…</p>
+              <p style={{color:'#4b5563', fontSize:'12px', marginTop:'8px'}}>Connecting to RAG server…</p>
             </div>
           )}
 
@@ -364,6 +364,7 @@ export default function AIChat() {
             ref={inputRef}
             className="aic-input"
             type="text"
+            aria-label="Ask a question about Nihar Ranjan"
             placeholder={isChecking ? 'Connecting…' : !isOnline ? 'Server offline — see instructions above' : 'Ask anything about Nihar…'}
             value={input}
             onChange={e => setInput(e.target.value)}
