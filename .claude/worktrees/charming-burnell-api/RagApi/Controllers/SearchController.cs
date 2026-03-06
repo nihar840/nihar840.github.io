@@ -57,7 +57,7 @@ public class SearchController : ControllerBase
     [HttpGet("stream")]
     public async Task StreamSearch(
         [FromQuery] string query,
-        [FromQuery] int topK = 5,
+        [FromQuery] int topK = 8,
         [FromQuery] string collectionName = "portfolio-docs",
         CancellationToken ct = default)
     {

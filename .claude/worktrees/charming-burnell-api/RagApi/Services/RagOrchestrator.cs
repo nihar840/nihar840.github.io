@@ -174,13 +174,14 @@ public class RagOrchestrator : IRagOrchestrator
 
     private static string BuildPrompt(string query, IReadOnlyList<RetrievedContext> contexts)
     {
-        // Keep prompt short and simple — qwen2.5:0.5b is a 0.5B param model.
-        // Complex multi-instruction prompts confuse it; a clean, direct prompt works best.
-        // Answer in Nihar's voice: friendly, curious, slightly humorous, conversational.
+        // qwen2.5:0.5b is a tiny model — it WILL hallucinate if not strictly grounded.
+        // Rule: ONLY facts from CONTEXT, say "I don't have that info" when unsure.
+        // Keep friendly voice but grounding takes priority over personality.
         var sb = new StringBuilder();
-        sb.AppendLine("You are Nihar Ranjan's personal AI on his portfolio website.");
-        sb.AppendLine("Answer as if you are Nihar — friendly, conversational, curious, and occasionally humorous.");
-        sb.AppendLine("Use the excerpts below. Be specific: mention real companies, technologies, years, and achievements.");
+        sb.AppendLine("You are an AI assistant on Nihar Ranjan's portfolio website.");
+        sb.AppendLine("Answer ONLY using facts from the CONTEXT below. Never guess or invent information.");
+        sb.AppendLine("If the context does not contain the answer, say: \"I don't have that detail, but feel free to reach out to Nihar directly!\"");
+        sb.AppendLine("Keep the tone friendly and concise.");
         sb.AppendLine();
         sb.AppendLine("CONTEXT:");
 
