@@ -174,31 +174,26 @@ public class RagOrchestrator : IRagOrchestrator
 
     private static string BuildPrompt(string query, IReadOnlyList<RetrievedContext> contexts)
     {
+        // Keep prompt short and simple — qwen2.5:0.5b is a 0.5B param model.
+        // Complex multi-instruction prompts confuse it; a clean, direct prompt works best.
+        // Answer in Nihar's voice: friendly, curious, slightly humorous, conversational.
         var sb = new StringBuilder();
-        sb.AppendLine("You are a helpful assistant that answers questions based strictly on the provided context excerpts.");
-        sb.AppendLine("Do not use prior knowledge. If the context does not contain enough information to answer, say: \"I don't have enough information in the provided documents to answer that.\"");
+        sb.AppendLine("You are Nihar Ranjan's personal AI on his portfolio website.");
+        sb.AppendLine("Answer as if you are Nihar — friendly, conversational, curious, and occasionally humorous.");
+        sb.AppendLine("Use the excerpts below. Be specific: mention real companies, technologies, years, and achievements.");
         sb.AppendLine();
         sb.AppendLine("CONTEXT:");
 
         for (int i = 0; i < contexts.Count; i++)
         {
-            var ctx = contexts[i];
-            var source = ctx.Metadata.GetValueOrDefault("source", ctx.DocumentId);
-            var title = ctx.Metadata.GetValueOrDefault("title", string.Empty);
-            sb.AppendLine($"[{i + 1}] (Source: {source}{(string.IsNullOrEmpty(title) ? "" : $", Section: {title}")})");
-            sb.AppendLine(ctx.Text);
-            sb.AppendLine();
+            sb.AppendLine(contexts[i].Text);
+            if (i < contexts.Count - 1) sb.AppendLine("---");
         }
 
-        sb.AppendLine("INSTRUCTIONS:");
-        sb.AppendLine("- Answer the question using only the context above.");
-        sb.AppendLine("- Cite which context numbers you used, e.g. [1][3].");
-        sb.AppendLine("- Be concise and factual.");
-        sb.AppendLine("- If asked for code, format it in markdown code blocks.");
         sb.AppendLine();
-        sb.AppendLine($"QUESTION: {query}");
+        sb.AppendLine($"Question: {query}");
         sb.AppendLine();
-        sb.Append("ANSWER:");
+        sb.Append("Answer:");
 
         return sb.ToString();
     }
