@@ -104,7 +104,7 @@ export default function AIChat() {
     setStream('');
 
     try {
-      const url = `${API_BASE}/api/search/stream?${new URLSearchParams({ query: q })}`;
+      const url = `${API_BASE}/api/search/stream?${new URLSearchParams({ query: q, topK: '8' })}`;
       const es = new EventSource(url);
       let ans = '', srcs: Source[] = [], streamDone = false;
 
