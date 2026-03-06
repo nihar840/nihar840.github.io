@@ -6,8 +6,8 @@ import profileImg from '../../assets/profile.jpg';
 const stats = [
   { value: '7+',     label: 'Years Exp.' },
   { value: '4',      label: 'Companies'  },
-  { value: 'M365',   label: 'Platform'   },
-  { value: 'AZ-900', label: 'Certified'  },
+  { value: '10+',    label: 'Projects'   },
+  { value: 'AI/RAG', label: 'Systems'    },
 ];
 
 const highlights = [
@@ -20,6 +20,9 @@ const stack = ['React', 'TypeScript', '.NET', 'Python', 'Azure', 'Cosmos DB', 'R
 ---
 
 <section class="work-hero section">
+  <!-- Falling pixel rain canvas — sits behind all content -->
+  <canvas id="hero-pixel-rain" aria-hidden="true"></canvas>
+
   <div class="speed-lines"></div>
   <div class="paper-texture"></div>
 
@@ -53,8 +56,9 @@ const stack = ['React', 'TypeScript', '.NET', 'Python', 'Azure', 'Cosmos DB', 'R
         NIHAR<br/>RANJAN
       </h1>
 
+      <!-- Typing effect title -->
       <p class="work-hero__title">
-        Software Engineer &amp; Tech Lead
+        <span id="hero-typing-text"></span><span class="typing-cursor">▋</span>
       </p>
 
       <!-- Quick Stats Bar -->
@@ -130,6 +134,37 @@ const stack = ['React', 'TypeScript', '.NET', 'Python', 'Azure', 'Cosmos DB', 'R
 <div class="halftone-divider container"></div>
 
 <style>
+/* ─── Pixel Rain Canvas ─── */
+#hero-pixel-rain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure hero content sits above canvas */
+.work-hero .speed-lines,
+.work-hero .paper-texture,
+.work-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Typing cursor ─── */
+.typing-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--accent);
+  font-weight: 700;
+  animation: cursor-blink 0.85s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 /* ─── Hero Stats Bar ─── */
 .hero-stats {
   display: flex;
@@ -242,7 +277,7 @@ const stack = ['React', 'TypeScript', '.NET', 'Python', 'Azure', 'Cosmos DB', 'R
   display: block;
 }
 
-/* Mobile: stack on top */
+/* Mobile */
 @media (max-width: 640px) {
   .hero-stats { width: 100%; }
   .hero-stat { flex: 1; padding: 8px 10px; min-width: unset; }
@@ -250,3 +285,134 @@ const stack = ['React', 'TypeScript', '.NET', 'Python', 'Azure', 'Cosmos DB', 'R
   .hero-exp-panel { max-width: 100%; }
 }
 </style>
+
+<script>
+/* ══════════════════════════════════════════
+   WORK HERO — Typing effect + Pixel rain
+   ══════════════════════════════════════════ */
+
+/* ── TYPING EFFECT ──────────────────────── */
+(function initTyping() {
+  const el = document.getElementById('hero-typing-text');
+  if (!el) return;
+
+  const TITLES = [
+    'Software Engineer',
+    'Tech Lead',
+    'AI Systems Builder',
+    'React & .NET Dev',
+    'Cloud Architect',
+    'Full-Stack Engineer',
+    'RAG / LLM Builder',
+  ];
+
+  let idx = 0, charIdx = 0, deleting = false;
+
+  function step() {
+    const current = TITLES[idx];
+    if (!deleting) {
+      el.textContent = current.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(step, 1800); // hold at full word
+        return;
+      }
+      setTimeout(step, 60 + Math.random() * 30); // ~60–90ms per char
+    } else {
+      el.textContent = current.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        idx = (idx + 1) % TITLES.length;
+        setTimeout(step, 320);
+        return;
+      }
+      setTimeout(step, 30 + Math.random() * 15); // delete faster
+    }
+  }
+
+  step();
+})();
+
+/* ── PIXEL RAIN ─────────────────────────── */
+(function initPixelRain() {
+  const canvas = document.getElementById('hero-pixel-rain') as HTMLCanvasElement | null;
+  if (!canvas) return;
+
+  const section = canvas.closest('.work-hero') as HTMLElement | null;
+  if (!section) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  // Manga palette — low opacity so content stays readable
+  const COLORS = ['#e63946', '#6366f1', '#111111', '#2b2d42', '#f4a261'];
+  const COUNT   = 55; // number of pixel squares
+
+  function resize() {
+    canvas.width  = section!.offsetWidth;
+    canvas.height = section!.offsetHeight;
+  }
+  resize();
+
+  // Debounced resize
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 120);
+  }, { passive: true });
+
+  // Create pixels — scatter them randomly across full height at start
+  const pixels = Array.from({ length: COUNT }, () => {
+    const size = 3 + Math.floor(Math.random() * 5); // 3–7 px
+    return {
+      x:       Math.random() * canvas.width,
+      y:       Math.random() * canvas.height,        // start spread out
+      speed:   0.4 + Math.random() * 1.6,            // px per frame
+      size,
+      color:   COLORS[Math.floor(Math.random() * COLORS.length)],
+      opacity: 0.055 + Math.random() * 0.12,         // 5–17% — subtle
+      wobble:  (Math.random() - 0.5) * 0.3,          // slight horizontal drift
+    };
+  });
+
+  let raf: number;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const p of pixels) {
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle   = p.color;
+      ctx.fillRect(Math.floor(p.x), Math.floor(p.y), p.size, p.size);
+
+      p.y += p.speed;
+      p.x += p.wobble;
+
+      // Reset when off bottom
+      if (p.y > canvas.height + p.size) {
+        p.y = -p.size - Math.random() * 40;
+        p.x = Math.random() * canvas.width;
+      }
+      // Wrap horizontal
+      if (p.x < -p.size)          p.x = canvas.width + p.size;
+      if (p.x > canvas.width + p.size) p.x = -p.size;
+    }
+
+    raf = requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Stop animation when section scrolls out of view (perf)
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      if (!raf) raf = requestAnimationFrame(animate);
+    } else {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    }
+  }, { threshold: 0 });
+  observer.observe(section);
+})();
+</script>
