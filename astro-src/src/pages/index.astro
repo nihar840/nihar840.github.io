@@ -79,9 +79,39 @@ import '../styles/animations.css';
   position: sticky;
   top: 56px;
   z-index: 800;
-  background: rgba(245,240,232,0.95);
+  background: rgba(245,240,232,0.88);
   border-bottom: 2.5px solid var(--ink);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* Smooth transition when scroll state changes */
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Scrolled state: fully opaque + drop shadow + gradient fade below ── */
+.work-nav.is-scrolled {
+  background: rgba(245,240,232,0.98);
+  box-shadow:
+    0 4px 0 var(--ink),            /* hard manga-panel shadow */
+    0 6px 24px rgba(13,13,13,0.12); /* soft depth shadow */
+}
+
+/* Gradient curtain below the nav — content melts behind it elegantly */
+.work-nav::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(to bottom,
+    rgba(245,240,232,0.55) 0%,
+    rgba(245,240,232,0) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.work-nav.is-scrolled::after {
+  opacity: 1;
 }
 .work-nav__inner {
   display: flex;
@@ -244,8 +274,25 @@ function initCardEntrance() {
   observeInZone(fz);
 }
 
+/* ── SCROLL SHADOW on work-nav ────────────────────
+   Adds .is-scrolled when work-zone has been scrolled past the hero.
+   This triggers: fully opaque bg, hard manga shadow, gradient fade-curtain.
+   ─────────────────────────────────────────────── */
+function initNavScroll() {
+  const wz  = document.getElementById('work-zone');
+  const nav = document.querySelector('.work-nav') as HTMLElement | null;
+  if (!wz || !nav) return;
+
+  const THRESHOLD = 10; // px scrolled before activating
+
+  wz.addEventListener('scroll', () => {
+    nav.classList.toggle('is-scrolled', wz.scrollTop > THRESHOLD);
+  }, { passive: true });
+}
+
 /* ── INIT — module script runs after DOM is parsed ── */
 initAnchorScroll();
 initActiveNav();
 initCardEntrance();
+initNavScroll();
 </script>
