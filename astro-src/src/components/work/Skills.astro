@@ -1,0 +1,37 @@
+---
+// Skills.astro — Chapter 02: The Arsenal
+const skills = [
+  { category: 'Frontend',      icon: '🎨', items: ['React', 'TypeScript', 'JavaScript', 'Redux', 'HTML5', 'CSS3'] },
+  { category: 'Backend',       icon: '⚙️', items: ['.NET', 'Python', 'REST APIs', 'Auth / AuthZ', 'Schema Validation', 'VB.NET'] },
+  { category: 'AI & RAG',      icon: '🧠', items: ['Grounded Retrieval', 'RAG Pipelines', 'AI Execution Flows', 'Guardrails', 'Audit Trails', 'Ollama'] },
+  { category: 'Cloud & DevOps',icon: '☁️', items: ['Azure', 'Azure DevOps', 'Azure Functions', 'CI/CD', 'GitHub', 'Azure Blob Storage'] },
+  { category: 'Databases',     icon: '🗄️', items: ['Cosmos DB', 'SQL Server', 'NoSQL', 'ChromaDB'] },
+  { category: 'Observability', icon: '📡', items: ['Structured Logging', 'Diagnostics', 'Metrics / Tracing', 'Incident Reduction'] },
+];
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="chapter-label">Chapter 02 · The Arsenal</div>
+    <div class="section-heading">
+      <h2>Skills &amp; Tools</h2>
+      <p>The weapons in my developer kit — forged in production battles.</p>
+    </div>
+
+    <div class="skills-grid">
+      {skills.map((s) => (
+        <div class="skill-card manga-panel">
+          <div class="skill-card__icon">{s.icon}</div>
+          <div class="skill-card__cat">{s.category}</div>
+          <div class="skill-card__tags">
+            {s.items.map(item => (
+              <span class="skill-tag">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="halftone-divider container"></div>

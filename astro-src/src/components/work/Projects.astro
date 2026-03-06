@@ -1,0 +1,86 @@
+---
+// Projects.astro — Chapter 04: The Creations
+const projects = [
+  {
+    title: 'AI Column Generation Pipeline',
+    emoji: '🤖',
+    description: 'Production AI system at Microsoft where users define natural language rules to generate derived columns over Cosmos DB data. Step-wise retrieval, schema validation, guardrails, and full audit trail.',
+    tags: ['React', '.NET', 'Python', 'Cosmos DB', 'Azure'],
+    link: null,
+  },
+  {
+    title: 'RAG Portfolio Search',
+    emoji: '✦',
+    description: 'Local AI-powered Q&A over portfolio documents. Streams answers from a local Ollama LLM backed by ChromaDB vector store and a .NET RAG orchestration layer with SSE.',
+    tags: ['React', '.NET', 'Ollama', 'ChromaDB', 'SSE'],
+    link: null,
+  },
+  {
+    title: 'FastTrack Automation — M365',
+    emoji: '⚡',
+    description: 'Enterprise-grade automation workflows within Microsoft 365 Admin UX. Migrated backend from Logic Apps to Azure Functions and built reusable React/TypeScript component library.',
+    tags: ['React', 'TypeScript', '.NET', 'Azure Functions', 'M365'],
+    link: null,
+  },
+  {
+    title: 'Walmart Order Management',
+    emoji: '🏥',
+    description: '.NET MVC and VB.NET features for a healthcare order management system for Walmart. Prescription validation rules and critical production updates during COVID-19.',
+    tags: ['.NET MVC', 'VB.NET', 'SQL Server', 'C#'],
+    link: null,
+  },
+];
+
+const awards = [
+  { title: 'ASCEND Leadership Program', org: 'Tech Mahindra', detail: '2nd Position' },
+  { title: 'ACE Award', org: 'Tech Mahindra', detail: 'Outstanding Contribution' },
+  { title: 'AI CoE Contributor', org: 'Tech Mahindra', detail: 'AI Awareness & Adoption' },
+  { title: 'Microsoft Certified: Azure Fundamentals', org: 'Microsoft', detail: 'AZ-900' },
+  { title: 'Certified Python Programmer', org: 'Infosys', detail: '' },
+];
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="chapter-label">Chapter 04 · The Creations</div>
+    <div class="section-heading">
+      <h2>Projects</h2>
+      <p>Systems built in the heat of battle — from enterprise to local AI.</p>
+    </div>
+
+    <div class="projects-grid">
+      {projects.map((p) => (
+        <div class="project-card manga-panel">
+          <div class="project-card__emoji">{p.emoji}</div>
+          <div class="project-card__title">{p.title}</div>
+          <p class="project-card__desc">{p.description}</p>
+          <div class="project-card__tags">
+            {p.tags.map(t => <span class="project-tag">{t}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Awards -->
+    <div style="margin-top: 64px;">
+      <div class="chapter-label">Side Quest · Achievements</div>
+      <div class="section-heading" style="margin-bottom: 24px;">
+        <h2>Awards &amp; Certs</h2>
+      </div>
+      <div class="awards-list">
+        {awards.map((a) => (
+          <div class="award-row manga-panel">
+            <span class="award-row__icon">🏆</span>
+            <div>
+              <div class="award-row__title">{a.title}</div>
+              <div class="award-row__org">{a.org}</div>
+            </div>
+            {a.detail && <span class="award-row__detail">{a.detail}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="halftone-divider container"></div>

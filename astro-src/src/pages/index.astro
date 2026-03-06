@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import ZoneToggle from '../components/ZoneToggle';
+import WorkHero from '../components/work/WorkHero.astro';
+import Skills from '../components/work/Skills.astro';
+import Experience from '../components/work/Experience.astro';
+import Projects from '../components/work/Projects.astro';
+import Contact from '../components/work/Contact.astro';
+import AskAI from '../components/work/AskAI';
+
+import FunHero from '../components/fun/FunHero.astro';
+import FluteMaster from '../components/fun/FluteMaster.astro';
+import AnimePicks from '../components/fun/AnimePicks.astro';
+import Philosophy from '../components/fun/Philosophy.astro';
+import SlidingPuzzle from '../components/fun/SlidingPuzzle';
+
+import '../styles/global.css';
+import '../styles/manga.css';
+import '../styles/animations.css';
+---
+
+<Base>
+  <!-- ══ ZONE TOGGLE (React island — fixed top bar) ══ -->
+  <ZoneToggle client:load />
+
+  <!-- ══════════════════════════════════════
+       WORK ZONE — Manga Paper
+  ════════════════════════════════════════ -->
+  <div id="work-zone">
+    <WorkHero />
+    <Skills />
+    <Experience />
+    <Projects />
+
+    <!-- AI Chatbot island -->
+    <section class="section" id="ask-ai">
+      <div class="container">
+        <AskAI client:load />
+      </div>
+    </section>
+
+    <Contact />
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FUN ZONE — Ocean Night
+  ════════════════════════════════════════ -->
+  <div id="fun-zone">
+    <FunHero />
+    <FluteMaster />
+    <AnimePicks />
+    <Philosophy />
+
+    <!-- Sliding Puzzle arc -->
+    <section class="fun-section-bg">
+      <div class="container">
+        <div class="fun-section-head">
+          <div class="fun-hero__chapter" style="margin-bottom:8px;">Arc 05 · The Final Challenge</div>
+          <h2>🧩 Solve The Puzzle</h2>
+          <p>Slide the tiles, rearrange Luffy. Prove you're Nakama material!</p>
+        </div>
+        <SlidingPuzzle client:load />
+      </div>
+    </section>
+
+    <!-- Fun Footer -->
+    <footer style="text-align:center;padding:24px;font-size:12px;color:var(--fun-text2);border-top:1px solid rgba(244,162,97,0.15);font-family:var(--font-manga);letter-spacing:0.08em;">
+      &copy; 2025 NIHAR RANJAN &middot; THE GRAND LINE IS JUST GETTING STARTED &#x1F3F4;&#x200D;&#x2620;&#xFE0F;
+    </footer>
+  </div>
+</Base>
+
+<script>
+  // Restore zone from sessionStorage without React (no FOUC)
+  const saved = sessionStorage.getItem('portfolio-zone');
+  if (saved === 'fun') {
+    const work = document.getElementById('work-zone');
+    const fun  = document.getElementById('fun-zone');
+    if (work) work.classList.add('zone-hidden');
+    if (fun)  fun.classList.add('zone-visible');
+  }
+
+  // Intersection Observer for scroll animations
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        (e.target as HTMLElement).style.opacity = '1';
+        (e.target as HTMLElement).style.transform = 'translateY(0) rotate(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.skill-card, .timeline-card, .project-card, .award-row')
+    .forEach(el => {
+      (el as HTMLElement).style.opacity = '0';
+      (el as HTMLElement).style.transform = 'translateY(20px)';
+      (el as HTMLElement).style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      obs.observe(el);
+    });
+</script>

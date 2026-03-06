@@ -1,0 +1,57 @@
+---
+// FluteMaster.astro — The Music Arc
+const bars = [
+  { h: 20, delay: '0s',    dur: '0.6s' },
+  { h: 35, delay: '0.1s',  dur: '0.8s' },
+  { h: 50, delay: '0.05s', dur: '0.7s' },
+  { h: 40, delay: '0.2s',  dur: '0.9s' },
+  { h: 28, delay: '0.15s', dur: '0.65s'},
+  { h: 45, delay: '0.25s', dur: '0.75s'},
+  { h: 55, delay: '0.0s',  dur: '0.85s'},
+  { h: 32, delay: '0.3s',  dur: '0.7s' },
+  { h: 42, delay: '0.18s', dur: '0.8s' },
+  { h: 22, delay: '0.12s', dur: '0.6s' },
+  { h: 38, delay: '0.22s', dur: '0.75s'},
+  { h: 48, delay: '0.08s', dur: '0.9s' },
+];
+---
+
+<section class="fun-section-bg" id="flute-section">
+  <div class="container">
+    <div class="fun-section-head">
+      <div class="fun-hero__chapter" style="margin-bottom:8px;">Arc 02 · The Music Arc</div>
+      <h2>🎵 The Flute Player</h2>
+      <p>Bansuri flute — ragas at midnight, peace in every note.</p>
+    </div>
+
+    <div class="flute-section manga-panel" style="border-color:rgba(244,162,97,0.4);background:var(--fun-surface);">
+      <!-- Wave bars -->
+      <div class="wave-bars">
+        {bars.map((b) => (
+          <div
+            class="wave-bar"
+            style={`height: ${b.h}px; --dur: ${b.dur}; --delay: ${b.delay};`}
+          ></div>
+        ))}
+      </div>
+
+      <div class="flute-info">
+        <p>
+          I play the <strong style="color:var(--fun-accent);">Bansuri</strong> — the bamboo flute rooted in Indian classical music.
+          It's the instrument of Lord Krishna, of ragas and rivers, of breath turned into melody.
+        </p>
+        <br />
+        <p>
+          Music for me is what debugging is to code — a way to find silence in complexity.
+          When the notes flow, everything else quiets down.
+        </p>
+        <br />
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+          {['🎼 Hindustani Classical', '🪈 Bansuri (Bamboo Flute)', '🌊 Raga &amp; Improvisation', '🌙 Late Night Sessions'].map(tag => (
+            <span class="philosophy-pill" set:html={tag}></span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+// AnimePicks.astro — Arc 03: The Anime Arc
+const picks = [
+  {
+    emoji: '🌊',
+    title: 'Marineford War',
+    sub: 'One Piece · Arc #22',
+    why: 'The most emotionally devastating arc in manga history. Ace\'s death hit different. Every panel felt like a punch.',
+    label: '💔 Peak Fiction',
+  },
+  {
+    emoji: '🏝️',
+    title: 'Enies Lobby',
+    sub: 'One Piece · Arc #18',
+    why: 'Luffy declares war on the World Government for Robin. "I want to live!" is the greatest speech ever written.',
+    label: '🔥 Emotional Arc',
+  },
+  {
+    emoji: '👒',
+    title: 'Wano Country',
+    sub: 'One Piece · Arc #31',
+    why: 'The art, the samurai culture, Zoro\'s backstory, Kaido\'s depth. The most visually stunning arc Oda has ever drawn.',
+    label: '⚔️ Epic Scale',
+  },
+  {
+    emoji: '🌸',
+    title: 'Whole Cake Island',
+    sub: 'One Piece · Arc #29',
+    why: 'Big Mom is terrifying, the wedding scene is chaotic perfection, and Sanji\'s journey is genuinely moving.',
+    label: '🎂 Underrated',
+  },
+  {
+    emoji: '🦁',
+    title: 'Dressrosa',
+    sub: 'One Piece · Arc #27',
+    why: 'Doflamingo is the best villain design. The colosseum, Law\'s backstory, and Luffy vs Doflamingo finale.',
+    label: '⚡ Best Villain',
+  },
+  {
+    emoji: '🎶',
+    title: 'Zou',
+    sub: 'One Piece · Arc #28',
+    why: 'Short but perfectly paced. The minks, the road poneglyphs, and the sense that everything is converging.',
+    label: '🗺️ World-Building',
+  },
+];
+---
+
+<section class="fun-section-bg" id="anime-section">
+  <div class="container">
+    <div class="fun-section-head">
+      <div class="fun-hero__chapter" style="margin-bottom:8px;">Arc 03 · The Anime Arc</div>
+      <h2>🏴‍☠️ One Piece — My Nakama</h2>
+      <p>Hover the cards to see why each arc hit so hard.</p>
+    </div>
+
+    <div class="anime-grid">
+      {picks.map((p) => (
+        <div class="anime-card">
+          <div class="anime-card__inner">
+            <!-- Front -->
+            <div class="anime-card__front">
+              <div class="anime-card__front-emoji">{p.emoji}</div>
+              <div class="anime-card__front-title">{p.title}</div>
+              <div class="anime-card__front-sub">{p.sub}</div>
+            </div>
+            <!-- Back -->
+            <div class="anime-card__back">
+              <p>{p.why}</p>
+              <div class="anime-card__back-label">{p.label}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Luffy quote -->
+    <div style="text-align:center;margin-top:48px;">
+      <div style="font-family:var(--font-manga);font-size:clamp(14px,2.5vw,20px);color:var(--fun-text2);letter-spacing:0.05em;margin-bottom:8px;">
+        Monkey D. Luffy
+      </div>
+      <blockquote style="font-family:var(--font-manga);font-size:clamp(22px,4vw,40px);color:var(--fun-accent);text-shadow:2px 2px 0 rgba(244,162,97,0.3);max-width:700px;margin:0 auto;line-height:1.2;">
+        "I don't want to conquer anything. I just think the guy with the most freedom in the world is the King of the Pirates!"
+      </blockquote>
+    </div>
+  </div>
+</section>

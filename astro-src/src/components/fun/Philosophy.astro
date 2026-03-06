@@ -1,0 +1,42 @@
+---
+// Philosophy.astro — Arc 04: The Way of the Navigator
+const pills = [
+  '🧭 Ship it. Iterate. Ship again.',
+  '🤝 My nakama > everything',
+  '📖 Be a lifelong student',
+  '🌊 Embrace the chaos',
+  '⚡ Speed with integrity',
+  '🎯 Fewer, better things',
+  '🏴‍☠️ Break rules. Keep values.',
+  '🎵 Find your flute. Play it.',
+];
+---
+
+<section class="fun-section-bg">
+  <div class="container">
+    <div class="fun-section-head">
+      <div class="fun-hero__chapter" style="margin-bottom:8px;">Arc 04 · The Way</div>
+      <h2>⚓ Personal Philosophy</h2>
+      <p>Things I actually believe — not resume buzzwords.</p>
+    </div>
+
+    <div class="philosophy-section">
+      <!-- Big speech bubble -->
+      <div class="speech-bubble speech-bubble--big" style="font-size:clamp(14px,2.5vw,20px);line-height:1.6;">
+        "The world's greatest engineers aren't those who write the most code —
+        they're the ones who ask the right questions, trust the people around them,
+        and ship things that actually matter to actual humans."
+      </div>
+
+      <div style="margin-top:40px;font-family:var(--font-manga);font-size:13px;color:var(--fun-text2);letter-spacing:0.08em;text-align:center;">
+        — NIHAR RANJAN, STILL FIGURING IT OUT
+      </div>
+
+      <div class="philosophy-pills">
+        {pills.map(p => (
+          <div class="philosophy-pill">{p}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

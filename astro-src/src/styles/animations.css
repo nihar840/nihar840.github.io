@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════
+   ANIMATIONS.CSS
+   Manga-style keyframes + micro-interactions
+   ═══════════════════════════════════════════ */
+
+/* ─── Panel slide-in on scroll ─── */
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(24px) rotate(1deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+/* ─── Ink drop entry ─── */
+@keyframes ink-drop {
+  0%   { opacity: 0; transform: scale(0.75) rotate(-3deg); }
+  60%  { opacity: 1; transform: scale(1.04) rotate(0.5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ─── Float (profile photo ring, etc.) ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ─── Spin (dashed ring) ─── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Wave dance (flute) ─── */
+@keyframes wave-dance {
+  from { transform: scaleY(0.25); opacity: 0.6; }
+  to   { transform: scaleY(1);    opacity: 1; }
+}
+
+/* ─── Win flash (puzzle) ─── */
+@keyframes win-flash {
+  0%, 100% { background: transparent; }
+  25%  { background: rgba(244,162,97,0.3); }
+  75%  { background: rgba(230,57,70,0.2); }
+}
+
+/* ─── Pulse glow ─── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(244,162,97,0.25); }
+}
+
+/* ─── Text blink (for "press start" type UI) ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── Toggle thumb slide ─── */
+@keyframes thumb-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ─── Halftone scatter (fun hero decoration) ─── */
+@keyframes halftone-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 10px 10px; }
+}
+
+/* ─── Section animations — apply via JS IntersectionObserver ─── */
+.anim-panel-in { animation: panel-in 0.5s ease both; }
+.anim-ink-drop  { animation: ink-drop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+.anim-float     { animation: float 4s ease-in-out infinite; }
+
+/* ─── Stagger delays (add via nth-child in components) ─── */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }

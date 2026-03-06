@@ -1,0 +1,47 @@
+---
+// FunHero.astro — "The Adventures of Nihar"
+---
+
+<section class="fun-hero">
+  <div class="speed-lines speed-lines--fun"></div>
+
+  <!-- Halftone dots background -->
+  <div
+    style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(244,162,97,0.15) 1px, transparent 1px);background-size:20px 20px;pointer-events:none;"
+  ></div>
+
+  <!-- Big decorative number -->
+  <div
+    style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--font-manga);font-size:300px;color:rgba(244,162,97,0.04);line-height:1;pointer-events:none;user-select:none;"
+    aria-hidden="true"
+  >
+    01
+  </div>
+
+  <div class="fun-hero__inner">
+    <div class="fun-hero__chapter">Volume 01 · The Other Side</div>
+
+    <h1 class="fun-hero__title">
+      THE<br/>ADVENTURES<br/>OF NIHAR
+    </h1>
+
+    <p class="fun-hero__sub">Beyond the Code</p>
+
+    <p class="fun-hero__desc">
+      When not shipping enterprise software, Nihar is playing flute,
+      watching One Piece, thinking about philosophy, and hiding from puzzles he can't solve.
+    </p>
+
+    <!-- Scroll hint -->
+    <div
+      style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"
+    >
+      <a href="#flute-section" class="btn-manga btn-manga--primary" style="background:var(--fun-accent);border-color:var(--fun-accent);color:#0d0d0d;">
+        🎵 Music Arc
+      </a>
+      <a href="#anime-section" class="btn-manga btn-manga--secondary" style="background:transparent;border-color:var(--fun-accent);color:var(--fun-accent);">
+        🏴‍☠️ Anime Arc
+      </a>
+    </div>
+  </div>
+</section>

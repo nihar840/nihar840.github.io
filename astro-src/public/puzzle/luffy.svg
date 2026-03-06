@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="100%" stop-color="#2d6a9f"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d4f8c"/>
+      <stop offset="100%" stop-color="#072a50"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#ffd700" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f4a261" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="300" height="180" fill="url(#sky)"/>
+  <!-- Sun glow -->
+  <circle cx="150" cy="80" r="55" fill="url(#sun)"/>
+  <!-- Sun -->
+  <circle cx="150" cy="80" r="28" fill="#ffd700" stroke="#f4a261" stroke-width="3"/>
+
+  <!-- Sea -->
+  <rect y="180" width="300" height="120" fill="url(#sea)"/>
+  <!-- Waves -->
+  <path d="M0 185 Q37 175 75 185 Q112 195 150 185 Q187 175 225 185 Q262 195 300 185 L300 200 L0 200Z" fill="rgba(255,255,255,0.12)"/>
+  <path d="M0 200 Q37 190 75 200 Q112 210 150 200 Q187 190 225 200 Q262 210 300 200 L300 215 L0 215Z" fill="rgba(255,255,255,0.08)"/>
+
+  <!-- Straw Hat (big, iconic) -->
+  <!-- Hat brim -->
+  <ellipse cx="150" cy="108" rx="62" ry="14" fill="#c8871a" stroke="#6b3a00" stroke-width="3"/>
+  <!-- Hat top -->
+  <path d="M100 108 Q100 60 150 58 Q200 60 200 108Z" fill="#f4a261" stroke="#6b3a00" stroke-width="3"/>
+  <!-- Hat band (red) -->
+  <rect x="100" y="100" width="100" height="12" rx="3" fill="#e63946" stroke="#6b3a00" stroke-width="2"/>
+
+  <!-- Face circle -->
+  <circle cx="150" cy="148" r="36" fill="#f9d4a3" stroke="#6b3a00" stroke-width="3"/>
+
+  <!-- Eyes (big manga style) -->
+  <circle cx="138" cy="142" r="8" fill="white" stroke="#6b3a00" stroke-width="2"/>
+  <circle cx="162" cy="142" r="8" fill="white" stroke="#6b3a00" stroke-width="2"/>
+  <circle cx="140" cy="144" r="5" fill="#1a1a1a"/>
+  <circle cx="164" cy="144" r="5" fill="#1a1a1a"/>
+  <circle cx="141" cy="143" r="2" fill="white"/>
+  <circle cx="165" cy="143" r="2" fill="white"/>
+
+  <!-- Smile (huge Luffy grin) -->
+  <path d="M132 155 Q150 170 168 155" stroke="#6b3a00" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Teeth -->
+  <path d="M136 158 Q150 170 164 158 L164 163 Q150 175 136 163Z" fill="white" stroke="#6b3a00" stroke-width="1.5"/>
+
+  <!-- Scar under left eye -->
+  <path d="M127 148 L133 154" stroke="#e63946" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Ears -->
+  <circle cx="114" cy="148" r="9" fill="#f9d4a3" stroke="#6b3a00" stroke-width="2.5"/>
+  <circle cx="186" cy="148" r="9" fill="#f9d4a3" stroke="#6b3a00" stroke-width="2.5"/>
+
+  <!-- Hair (black, spiky) -->
+  <path d="M115 128 Q118 108 125 112 Q128 95 138 105 Q140 90 150 92 Q160 90 162 105 Q172 95 175 112 Q182 108 185 128" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Red vest / shirt collar -->
+  <path d="M120 182 Q135 172 150 175 Q165 172 180 182 L180 210 Q165 205 150 207 Q135 205 120 210Z" fill="#e63946" stroke="#6b3a00" stroke-width="2"/>
+  <!-- Vest opening -->
+  <path d="M150 175 L150 210" stroke="#6b3a00" stroke-width="1.5"/>
+
+  <!-- Text "ONE PIECE" at bottom -->
+  <text x="150" y="268" font-family="Impact, 'Arial Black', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="#ffd700" stroke="#6b3a00" stroke-width="2" paint-order="stroke">ONE PIECE</text>
+  <text x="150" y="288" font-family="Impact, 'Arial Black', sans-serif" font-size="12" text-anchor="middle" fill="rgba(244,162,97,0.7)">🏴‍☠️  NIHAR  🏴‍☠️</text>
+</svg>

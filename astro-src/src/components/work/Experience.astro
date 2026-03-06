@@ -1,0 +1,87 @@
+---
+// Experience.astro — Chapter 03: The Journey
+const experience = [
+  {
+    role: 'Software Engineer — Cosmic Portal',
+    company: 'Microsoft (via Tech Mahindra)',
+    period: 'Jul 2025 – Present',
+    location: 'Redmond, Washington, USA',
+    color: '#6366f1',
+    highlights: [
+      'AI-assisted column generation — users define rules in the UI to generate derived columns on top of Cosmos DB data',
+      'Step-wise execution pipeline: retrieve rows → fetch linked docs → extract content → validate → write to DB',
+      'Designed workflows integrating Cosmos DB + Azure Blob Storage for structured AI context assembly',
+      'Built command generation with guardrails, sanitization, allowed-action constraints, confidence checks, and full audit trail',
+      'Contributed to retrieval logic: document selection, relevance filtering, chunking, and context limits',
+      'Created reusable Python logging utility for structured logging and diagnostics',
+      'Built and integrated a React-based experience into enterprise CRM flows',
+    ],
+  },
+  {
+    role: 'Software Engineer / Associate Team Lead',
+    company: 'Tech Mahindra — Microsoft (FastTrack & Unified Action Tracker)',
+    period: 'Mar 2021 – Jun 2025',
+    location: 'Redmond, Washington, USA',
+    color: '#8b5cf6',
+    highlights: [
+      'Shipped enterprise-grade wizards and workflows within Microsoft 365 Admin UX, Figma to production',
+      'Associate Team Lead — code reviews, mentoring, and engineering guidance',
+      'Migrated backend workflows from Logic Apps to Azure Functions, improving reliability',
+      'Built reusable UI components (filters, panels, grids, pagination) for data-heavy experiences',
+    ],
+  },
+  {
+    role: 'Specialist Programmer — BP RIO',
+    company: 'Infosys Ltd.',
+    period: 'Jul 2020 – Feb 2021',
+    location: 'India',
+    color: '#06b6d4',
+    highlights: [
+      'Delivered critical UI components and reusable React modules for British Petroleum RIO',
+      'Maintained low defect rates through clean implementation and disciplined delivery',
+    ],
+  },
+  {
+    role: 'Software Engineer — Walmart (Order Creation)',
+    company: 'Infosys Ltd.',
+    period: 'Jul 2018 – Jun 2020',
+    location: 'India',
+    color: '#10b981',
+    highlights: [
+      '.NET MVC and VB.NET features for a healthcare order management system for Walmart',
+      'Prescription validation rules and urgent production updates during COVID-19',
+    ],
+  },
+];
+---
+
+<section class="section" id="experience">
+  <div class="container">
+    <div class="chapter-label">Chapter 03 · The Journey</div>
+    <div class="section-heading">
+      <h2>Experience</h2>
+      <p>Enterprise battles won, systems shipped, teams led.</p>
+    </div>
+
+    <div class="timeline">
+      {experience.map((exp) => (
+        <div class="timeline-item">
+          <div class="timeline-dot" style={`background: ${exp.color}`}></div>
+          <div class="timeline-card manga-panel">
+            <div class="timeline-card__role">{exp.role}</div>
+            <div class="timeline-card__company">{exp.company}</div>
+            <div class="timeline-card__meta">
+              <span>📅 {exp.period}</span>
+              <span>📍 {exp.location}</span>
+            </div>
+            <ul class="timeline-card__highlights">
+              {exp.highlights.map(h => <li>{h}</li>)}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="halftone-divider container"></div>
