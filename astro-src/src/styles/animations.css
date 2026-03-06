@@ -3,78 +3,142 @@
    Manga-style keyframes + micro-interactions
    ═══════════════════════════════════════════ */
 
-/* ─── Panel slide-in on scroll ─── */
 @keyframes panel-in {
   from { opacity: 0; transform: translateY(24px) rotate(1deg); }
   to   { opacity: 1; transform: translateY(0) rotate(0deg); }
 }
 
-/* ─── Ink drop entry ─── */
 @keyframes ink-drop {
   0%   { opacity: 0; transform: scale(0.75) rotate(-3deg); }
   60%  { opacity: 1; transform: scale(1.04) rotate(0.5deg); }
   100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* ─── Float (profile photo ring, etc.) ─── */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-10px); }
 }
 
-/* ─── Spin (dashed ring) ─── */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-/* ─── Wave dance (flute) ─── */
 @keyframes wave-dance {
   from { transform: scaleY(0.25); opacity: 0.6; }
   to   { transform: scaleY(1);    opacity: 1; }
 }
 
-/* ─── Win flash (puzzle) ─── */
 @keyframes win-flash {
-  0%, 100% { background: transparent; }
-  25%  { background: rgba(244,162,97,0.3); }
-  75%  { background: rgba(230,57,70,0.2); }
+  0%, 100% { box-shadow: 0 0 0 3px #f4a261, 0 0 40px rgba(244,162,97,0.5); }
+  50%  { box-shadow: 0 0 0 6px #f4a261, 0 0 60px rgba(244,162,97,0.7); }
 }
 
-/* ─── Pulse glow ─── */
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,0); }
   50%       { box-shadow: 0 0 0 8px rgba(244,162,97,0.25); }
 }
 
-/* ─── Text blink (for "press start" type UI) ─── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
 
-/* ─── Toggle thumb slide ─── */
-@keyframes thumb-pop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
-/* ─── Halftone scatter (fun hero decoration) ─── */
 @keyframes halftone-drift {
   0%   { background-position: 0 0; }
   100% { background-position: 10px 10px; }
 }
 
-/* ─── Section animations — apply via JS IntersectionObserver ─── */
+/* ── Card entrance (IO adds class — cards start VISIBLE, then pop) ── */
+.card-entered {
+  animation: card-pop 0.4s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+@keyframes card-pop {
+  from { transform: translateY(14px) scale(0.97); }
+  to   { transform: translateY(0)    scale(1); }
+}
+
+/* ── Stagger helpers ── */
 .anim-panel-in { animation: panel-in 0.5s ease both; }
 .anim-ink-drop  { animation: ink-drop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
 .anim-float     { animation: float 4s ease-in-out infinite; }
 
-/* ─── Stagger delays (add via nth-child in components) ─── */
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
-.delay-6 { animation-delay: 0.6s; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.40s; }
+.delay-6 { animation-delay: 0.48s; }
+
+/* ══════════════════════════════════════════
+   STICK FIGURE KEYFRAMES
+   ══════════════════════════════════════════ */
+
+/* Full runs across screen */
+@keyframes run-right {
+  from { left: -80px; }
+  to   { left: calc(100vw + 80px); }
+}
+@keyframes run-left {
+  from { right: -80px; }
+  to   { right: calc(100vw + 80px); }
+}
+
+/* Body bob while running */
+@keyframes body-bob {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  25%       { transform: translateY(-6px) scaleX(1); }
+  75%       { transform: translateY(-3px) scaleX(1); }
+}
+@keyframes body-bob-flip {
+  0%, 100% { transform: translateY(0) scaleX(-1); }
+  25%       { transform: translateY(-6px) scaleX(-1); }
+  75%       { transform: translateY(-3px) scaleX(-1); }
+}
+
+/* Limb swing (set transform-origin at joint via transform-box) */
+@keyframes arm-fwd {
+  0%, 100% { transform: rotate(-30deg); }
+  50%       { transform: rotate(40deg);  }
+}
+@keyframes arm-back {
+  0%, 100% { transform: rotate(40deg);  }
+  50%       { transform: rotate(-30deg); }
+}
+@keyframes leg-fwd {
+  0%, 100% { transform: rotate(40deg);  }
+  50%       { transform: rotate(-35deg); }
+}
+@keyframes leg-back {
+  0%, 100% { transform: rotate(-35deg); }
+  50%       { transform: rotate(40deg);  }
+}
+
+/* Jumping */
+@keyframes do-jump {
+  0%   { transform: translateY(0)    scaleY(1); }
+  30%  { transform: translateY(-60px) scaleY(1.05); }
+  50%  { transform: translateY(-70px) scaleY(0.92); }
+  70%  { transform: translateY(-60px) scaleY(1.05); }
+  85%  { transform: translateY(-4px)  scaleY(1.1); }
+  100% { transform: translateY(0)    scaleY(1); }
+}
+
+/* Waving arm */
+@keyframes do-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25%       { transform: rotate(-55deg); }
+  75%       { transform: rotate(10deg); }
+}
+
+/* Cartwheel spin */
+@keyframes cartwheel {
+  from { transform: rotate(0deg) translateX(0); }
+  to   { transform: rotate(720deg) translateX(120px); }
+}
+
+/* Sitting/chilling idle */
+@keyframes idle-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
