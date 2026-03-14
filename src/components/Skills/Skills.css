@@ -1,0 +1,25 @@
+.skills-section {
+  position: relative;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.skills-grid__item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.skills-grid.revealed .skills-grid__item {
+  animation: fadeInUp 0.5s var(--ease-out) forwards;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

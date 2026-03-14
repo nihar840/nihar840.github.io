@@ -1,0 +1,79 @@
+.floating-blocks {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-block {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform-style: preserve-3d;
+  animation: blockFloat var(--float-duration, 12s) var(--ease-in-out) infinite;
+  animation-delay: var(--float-delay, 0s);
+  will-change: transform;
+}
+
+/* Position blocks randomly across the container */
+.floating-block:nth-child(1) { top: 10%; left: 5%; }
+.floating-block:nth-child(2) { top: 20%; right: 8%; }
+.floating-block:nth-child(3) { top: 55%; left: 12%; }
+.floating-block:nth-child(4) { top: 65%; right: 15%; }
+.floating-block:nth-child(5) { top: 35%; left: 80%; }
+.floating-block:nth-child(6) { top: 80%; left: 45%; }
+.floating-block:nth-child(7) { top: 15%; left: 50%; }
+.floating-block:nth-child(8) { top: 45%; right: 5%; }
+
+/* ── Faces ── */
+.floating-block__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--hud-border-color);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-block__face--front  { transform: translateZ(35px); }
+.floating-block__face--back   { transform: translateZ(-35px) rotateY(180deg); }
+.floating-block__face--left   { transform: translateX(-35px) rotateY(-90deg); }
+.floating-block__face--right  { transform: translateX(35px) rotateY(90deg); }
+.floating-block__face--top    { transform: translateY(-35px) rotateX(90deg); }
+.floating-block__face--bottom { transform: translateY(35px) rotateX(-90deg); }
+
+.floating-block__label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--hud-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* Accent glow on front face */
+.floating-block__face--front {
+  box-shadow: inset 0 0 15px var(--hud-glow);
+}
+
+@media (max-width: 768px) {
+  .floating-block {
+    width: 50px;
+    height: 50px;
+  }
+  .floating-block__face--front  { transform: translateZ(25px); }
+  .floating-block__face--back   { transform: translateZ(-25px) rotateY(180deg); }
+  .floating-block__face--left   { transform: translateX(-25px) rotateY(-90deg); }
+  .floating-block__face--right  { transform: translateX(25px) rotateY(90deg); }
+  .floating-block__face--top    { transform: translateY(-25px) rotateX(90deg); }
+  .floating-block__face--bottom { transform: translateY(25px) rotateX(-90deg); }
+  .floating-block__label { font-size: 7px; }
+
+  /* Hide some blocks on mobile */
+  .floating-block:nth-child(n+5) { display: none; }
+}

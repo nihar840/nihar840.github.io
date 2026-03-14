@@ -1,0 +1,99 @@
+.rune-flow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rune-flow--background {
+  opacity: 0.06;
+}
+
+.rune-flow--left {
+  right: auto;
+  width: 200px;
+  opacity: 0.08;
+}
+
+.rune-flow--right {
+  left: auto;
+  width: 200px;
+  opacity: 0.08;
+}
+
+/* ── Rune Column ── */
+.rune-column {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation-duration: var(--col-speed, 20s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--col-delay, 0s);
+  will-change: transform;
+}
+
+.rune-column--up {
+  animation-name: runeFlowUp;
+  bottom: auto;
+  top: 100%;
+}
+
+.rune-column--down {
+  animation-name: runeFlowDown;
+  top: -50%;
+}
+
+@keyframes runeFlowUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200%); }
+}
+
+@keyframes runeFlowDown {
+  from { transform: translateY(0); }
+  to { transform: translateY(200%); }
+}
+
+/* ── Individual Rune Character ── */
+.rune-char {
+  font-size: 18px;
+  color: var(--accent-primary);
+  font-family: 'Segoe UI Symbol', 'Noto Sans Runic', sans-serif;
+  line-height: 1;
+  opacity: 0;
+  animation: runeReveal 4s ease-in-out infinite;
+  animation-delay: var(--rune-delay, 0s);
+  text-shadow: 0 0 8px var(--accent-glow);
+  user-select: none;
+}
+
+@keyframes runeReveal {
+  0%, 100% {
+    opacity: 0.1;
+    text-shadow: none;
+  }
+  30%, 70% {
+    opacity: 0.7;
+    text-shadow: 0 0 8px var(--accent-glow), 0 0 16px var(--accent-glow);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 12px var(--accent-glow-strong), 0 0 24px var(--accent-glow);
+  }
+}
+
+@media (max-width: 768px) {
+  .rune-flow--background {
+    opacity: 0.03;
+  }
+  .rune-flow--left,
+  .rune-flow--right {
+    display: none;
+  }
+  .rune-char {
+    font-size: 14px;
+  }
+}

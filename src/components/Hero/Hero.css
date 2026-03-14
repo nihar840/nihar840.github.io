@@ -1,0 +1,216 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-lg);
+  overflow: hidden;
+  background: var(--gradient-hero);
+  z-index: 1;
+}
+
+.hero__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xl);
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+/* ── Scene ── */
+.hero__scene {
+  position: relative;
+  flex: 1;
+  min-height: 400px;
+}
+
+/* ── Text ── */
+.hero__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  animation: fadeInUp 0.8s var(--ease-out) both;
+}
+
+.hero__label {
+  animation: fadeInUp 0.8s var(--ease-out) 0.2s both;
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin: 0;
+  animation: fadeInUp 0.8s var(--ease-out) 0.3s both;
+}
+
+.hero__title-line {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.4s both;
+}
+
+.hero__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  color: var(--accent-primary);
+  letter-spacing: 0.03em;
+}
+
+.hero__cursor {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  color: var(--accent-primary);
+  animation: blink 1s step-end infinite;
+}
+
+.hero__tagline {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+  animation: fadeInUp 0.8s var(--ease-out) 0.5s both;
+}
+
+.hero__quote {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent-primary);
+  opacity: 0.7;
+  font-style: italic;
+  margin: 0;
+  animation: fadeInUp 0.8s var(--ease-out) 0.55s both;
+}
+
+/* ── Actions ── */
+.hero__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  animation: fadeInUp 0.8s var(--ease-out) 0.6s both;
+}
+
+.hero__btn {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all var(--duration-normal) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero__btn--primary {
+  background: var(--accent-primary);
+  color: var(--bg-base);
+  font-weight: 600;
+}
+
+.hero__btn--primary:hover {
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.hero__btn-bracket {
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+/* ── Socials ── */
+.hero__socials {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  animation: fadeInUp 0.8s var(--ease-out) 0.7s both;
+}
+
+.hero__social-link {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 16px;
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.hero__social-link:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px var(--hud-glow);
+}
+
+/* ── Scroll Hint ── */
+.hero__scroll-hint {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  animation: fadeIn 1s var(--ease-out) 1.2s both;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-primary), transparent);
+  animation: float 2s ease-in-out infinite;
+}
+
+.hero__scroll-text {
+  font-size: 10px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hero__content {
+    flex-direction: column;
+    gap: var(--space-xl);
+    text-align: center;
+  }
+
+  .hero__scene {
+    min-height: 280px;
+    order: 1;
+  }
+
+  .hero__text {
+    align-items: center;
+    order: 2;
+  }
+
+  .hero__name {
+    font-size: var(--text-3xl);
+  }
+
+  .hero__tagline {
+    text-align: center;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__socials {
+    justify-content: center;
+  }
+}

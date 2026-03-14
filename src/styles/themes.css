@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   WEATHER THEMES — 4 atmospheric profiles
+   Applied via [data-theme="X"] on <html>
+   ═══════════════════════════════════════════════════════ */
+
+/* ── EMBER (Default) — Fire, Amber, Warmth ── */
+[data-theme="ember"] {
+  --accent-primary: #f59e0b;
+  --accent-secondary: #d97706;
+  --accent-tertiary: #ef4444;
+  --accent-glow: rgba(245, 158, 11, 0.35);
+  --accent-glow-strong: rgba(245, 158, 11, 0.6);
+  --ambient-color: rgba(245, 158, 11, 0.04);
+  --particle-color-1: #f59e0b;
+  --particle-color-2: #ef4444;
+  --particle-color-3: #fbbf24;
+  --gear-color: #92400e;
+  --gear-accent: #d97706;
+  --hud-border-color: rgba(245, 158, 11, 0.2);
+  --hud-glow: rgba(245, 158, 11, 0.1);
+  --hud-text: #f59e0b;
+  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+  --section-divider: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+/* ── STORM — Electric Blue, Lightning, Rain ── */
+[data-theme="storm"] {
+  --accent-primary: #3b82f6;
+  --accent-secondary: #1d4ed8;
+  --accent-tertiary: #60a5fa;
+  --accent-glow: rgba(59, 130, 246, 0.35);
+  --accent-glow-strong: rgba(59, 130, 246, 0.6);
+  --ambient-color: rgba(59, 130, 246, 0.04);
+  --particle-color-1: #60a5fa;
+  --particle-color-2: #93c5fd;
+  --particle-color-3: #3b82f6;
+  --gear-color: #1e3a5f;
+  --gear-accent: #3b82f6;
+  --hud-border-color: rgba(59, 130, 246, 0.2);
+  --hud-glow: rgba(59, 130, 246, 0.1);
+  --hud-text: #60a5fa;
+  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+  --section-divider: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+/* ── FROST — Ice Blue, Snow, Frozen ── */
+[data-theme="frost"] {
+  --accent-primary: #06b6d4;
+  --accent-secondary: #0891b2;
+  --accent-tertiary: #67e8f9;
+  --accent-glow: rgba(6, 182, 212, 0.35);
+  --accent-glow-strong: rgba(6, 182, 212, 0.6);
+  --ambient-color: rgba(6, 182, 212, 0.04);
+  --particle-color-1: #e0f2fe;
+  --particle-color-2: #bae6fd;
+  --particle-color-3: #67e8f9;
+  --gear-color: #164e63;
+  --gear-accent: #06b6d4;
+  --hud-border-color: rgba(6, 182, 212, 0.2);
+  --hud-glow: rgba(6, 182, 212, 0.1);
+  --hud-text: #67e8f9;
+  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
+  --section-divider: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+/* ── VOID — Deep Purple, Cosmic, Stars ── */
+[data-theme="void"] {
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #7c3aed;
+  --accent-tertiary: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.35);
+  --accent-glow-strong: rgba(139, 92, 246, 0.6);
+  --ambient-color: rgba(139, 92, 246, 0.04);
+  --particle-color-1: #c4b5fd;
+  --particle-color-2: #a78bfa;
+  --particle-color-3: #8b5cf6;
+  --gear-color: #3b1f6e;
+  --gear-accent: #8b5cf6;
+  --hud-border-color: rgba(139, 92, 246, 0.2);
+  --hud-glow: rgba(139, 92, 246, 0.1);
+  --hud-text: #a78bfa;
+  --gradient-hero: radial-gradient(ellipse at 50% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+  --section-divider: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}

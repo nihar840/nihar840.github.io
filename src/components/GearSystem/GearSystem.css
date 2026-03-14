@@ -1,0 +1,97 @@
+.gear-system {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.gear-system--left {
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gear-system--right {
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gear-system--center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gear-system__svg {
+  overflow: visible;
+}
+
+/* ── Connecting Rods ── */
+.gear-system__rod {
+  stroke: var(--gear-accent);
+  stroke-width: 0.6;
+  opacity: 0.4;
+  stroke-dasharray: 4 3;
+}
+
+/* ── Gears ── */
+.gear-system__gear {
+  fill: var(--gear-color);
+  fill-opacity: 0.25;
+  stroke: var(--gear-accent);
+  stroke-width: 0.8;
+}
+
+/* Main gear: 16 teeth, slowest */
+.gear-system__gear--a {
+  animation: rotate 24s linear infinite;
+}
+
+/* Secondary: 10 teeth, 16/10 = 1.6x faster, reverse */
+.gear-system__gear--b {
+  animation: rotateReverse 15s linear infinite;
+}
+
+/* Tertiary: 6 teeth, 10/6 = 1.67x faster than B, forward */
+.gear-system__gear--c {
+  animation: rotate 9s linear infinite;
+}
+
+/* ── Jewel Bearings ── */
+.gear-system__jewel {
+  fill: var(--accent-primary);
+  opacity: 0.5;
+  filter: drop-shadow(0 0 3px var(--accent-glow));
+}
+
+/* ── Second Hand — sweeps with gear A ── */
+.gear-system__hand--seconds {
+  animation: rotate 24s linear infinite;
+}
+
+/* ── Balance Wheel — oscillates ── */
+.gear-system__balance {
+  animation: balanceOscillate 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes balanceOscillate {
+  0% { transform: rotate(-25deg); }
+  100% { transform: rotate(25deg); }
+}
+
+/* ── Escapement Lever — ticks ── */
+.gear-system__escapement {
+  animation: escapementTick 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes escapementTick {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+@media (max-width: 768px) {
+  .gear-system {
+    opacity: 0.08;
+    transform: scale(0.5);
+  }
+}
