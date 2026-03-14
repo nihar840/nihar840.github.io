@@ -1,0 +1,15 @@
+{
+  "short_name": "Nihar Ranjan",
+  "name": "Nihar Ranjan — Software Engineer & Team Lead",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0c0c14",
+  "background_color": "#0c0c14"
+}
