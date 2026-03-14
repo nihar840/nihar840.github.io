@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════════
+   BASE DESIGN TOKENS — Royal Matte Dark Carbon
+   Constant across all weather themes
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Background Layers ── */
+  --bg-base: #08080c;
+  --bg-carbon: #0e0e14;
+  --bg-elevated: #13131b;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-card-hover: rgba(255, 255, 255, 0.045);
+
+  /* ── Text ── */
+  --text-primary: #e8e8ed;
+  --text-secondary: #8a8a9a;
+  --text-muted: #4a4a5a;
+  --text-accent: var(--accent-primary);
+
+  /* ── Borders ── */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.14);
+
+  /* ── Metallic Accents ── */
+  --metallic-gold: #d4a853;
+  --metallic-silver: #c0c0c8;
+  --metallic-bronze: #b87333;
+  --metallic-copper: #b5651d;
+
+  /* ── Spacing ── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', 'Segoe UI', 'Roboto', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-display: 'Inter', 'Segoe UI', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.5rem;
+
+  /* ── Radius ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ── Transitions ── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  /* ── Z-Index Scale ── */
+  --z-base: 0;
+  --z-float: 10;
+  --z-overlay: 100;
+  --z-header: 900;
+  --z-modal: 1000;
+
+  /* ── HUD ── */
+  --hud-border-width: 1px;
+  --hud-corner-size: 12px;
+  --scan-line-opacity: 0.03;
+}

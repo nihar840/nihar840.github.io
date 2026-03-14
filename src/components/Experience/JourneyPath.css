@@ -1,0 +1,32 @@
+.journey-path {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 0;
+}
+
+.journey-path__line {
+  transition: stroke-dashoffset 2s var(--ease-out);
+}
+
+.journey-path--revealed .journey-path__line {
+  stroke-dashoffset: 0;
+}
+
+.journey-path__dot {
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.journey-path--revealed .journey-path__dot {
+  animation: fadeIn 0.4s var(--ease-out) forwards;
+}
+
+@media (max-width: 768px) {
+  .journey-path {
+    left: 10px;
+    width: 40px;
+  }
+}

@@ -1,0 +1,144 @@
+.mandala {
+  position: relative;
+  pointer-events: none;
+}
+
+.mandala--top-right {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.mandala--top-left {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.mandala--bottom-right {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.mandala--center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.mandala__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ── Concentric Rings ── */
+.mandala__ring {
+  fill: none;
+  stroke: var(--hud-border-color);
+  stroke-width: 0.5;
+}
+
+.mandala__ring--outer {
+  animation: rotate 40s linear infinite;
+  transform-origin: center;
+  stroke-dasharray: 8 4;
+}
+
+.mandala__ring--mid {
+  animation: rotateReverse 30s linear infinite;
+  transform-origin: center;
+}
+
+.mandala__ring--inner {
+  animation: rotate 20s linear infinite;
+  transform-origin: center;
+  stroke: var(--gear-accent);
+  opacity: 0.5;
+}
+
+.mandala__ring--core {
+  stroke: var(--accent-primary);
+  stroke-width: 0.8;
+  opacity: 0.6;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ── Lotus Petals ── */
+.mandala__petal {
+  fill: none;
+  stroke: var(--gear-accent);
+  stroke-width: 0.5;
+  opacity: 0.3;
+  animation: fadeIn 0.5s ease-out both;
+}
+
+/* ── Circuit Traces ── */
+.mandala__circuit {
+  animation: fadeIn 0.6s ease-out both;
+}
+
+.mandala__trace {
+  fill: none;
+  stroke: var(--hud-border-color);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+}
+
+.mandala__trace--branch {
+  stroke-dasharray: 3 4;
+  opacity: 0.5;
+}
+
+/* ── Neural Nodes ── */
+.mandala__node {
+  fill: var(--accent-primary);
+  opacity: 0.4;
+  animation: nodeFlicker 3s ease-in-out infinite;
+}
+
+@keyframes nodeFlicker {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Core ── */
+.mandala__core-dot {
+  fill: var(--accent-primary);
+  opacity: 0.5;
+  filter: drop-shadow(0 0 4px var(--accent-glow));
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.mandala__core-inner {
+  fill: var(--bg-base);
+}
+
+/* ── Data Flow Dots ── */
+.mandala__data-dot {
+  fill: var(--accent-primary);
+  opacity: 0;
+  animation: dataFlow 4s ease-in-out infinite;
+}
+
+@keyframes dataFlow {
+  0%, 100% { opacity: 0.1; r: 0.8; }
+  50% { opacity: 0.7; r: 1.5; }
+}
+
+@media (max-width: 768px) {
+  .mandala {
+    transform: scale(0.7);
+    opacity: 0.6;
+  }
+}

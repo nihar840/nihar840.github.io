@@ -1,0 +1,46 @@
+.physics-patterns {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.physics-patterns__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Section-specific variants */
+.physics-patterns--hero {
+  opacity: 0.6;
+}
+
+.physics-patterns--skills {
+  opacity: 0.35;
+}
+
+.physics-patterns--experience {
+  opacity: 0.3;
+}
+
+.physics-patterns--projects {
+  opacity: 0.25;
+}
+
+.physics-patterns--contact {
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .physics-patterns {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .physics-patterns {
+    display: none;
+  }
+}

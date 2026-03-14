@@ -1,0 +1,27 @@
+.hud-frame {
+  position: relative;
+  padding: var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--hud-border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.hud-frame:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--hud-glow), inset 0 0 20px var(--hud-glow);
+}
+
+.hud-frame__label {
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  background: var(--bg-carbon);
+  padding: 0 8px;
+}
+
+.hud-frame__content {
+  position: relative;
+  z-index: 1;
+}

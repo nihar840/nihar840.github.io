@@ -1,0 +1,30 @@
+import { useRef, useEffect, useState } from 'react';
+
+/**
+ * Hook that triggers a reveal state when element enters viewport.
+ * Returns [ref, isRevealed].
+ */
+export default function useIntersectionReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return [ref, revealed];
+}

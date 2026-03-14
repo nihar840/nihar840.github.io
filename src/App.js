@@ -1,30 +1,33 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Header from './Header/Header';
-import SearchPage from './Search/SearchPage';
-import Hero from './Portfolio/Hero';
-import Skills from './Portfolio/Skills';
-import Experience from './Portfolio/Experience';
-import Projects from './Portfolio/Projects';
-import Contact from './Portfolio/Contact';
+import { ThemeProvider } from './context/ThemeContext';
+import ParticleBackground from './components/ParticleBackground/ParticleBackground';
+import ScanLine from './components/HUD/ScanLine';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import Skills from './components/Skills/Skills';
+import Experience from './components/Experience/Experience';
+import Projects from './components/Projects/Projects';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
+import SmileyBuddy from './components/SmileyBuddy/SmileyBuddy';
 
 function App() {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const openSearch = () => setSearchOpen(true);
-
   return (
-    <React.Fragment>
-      <Header onSearchOpen={openSearch} />
+    <ThemeProvider>
+      <ParticleBackground />
+      <ScanLine />
+      <Header />
       <main>
-        <Hero onSearchOpen={openSearch} />
+        <Hero />
         <Skills />
         <Experience />
         <Projects />
-        <Contact onSearchOpen={openSearch} />
+        <Contact />
       </main>
-      {searchOpen && <SearchPage onClose={() => setSearchOpen(false)} />}
-    </React.Fragment>
+      <Footer />
+      <SmileyBuddy />
+    </ThemeProvider>
   );
 }
 
